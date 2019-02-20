@@ -1,0 +1,10 @@
+﻿using System; using AppKit; using CoreGraphics; using Foundation; using System.Collections; using System.Collections.Generic; 
+namespace Oferta__
+{
+    public class ProductTableDelegate_Tab5 : NSTableViewDelegate     {          private const string CellIndentifer = "ProdCell";          private ProductTableDataSource_Tab5 DataSource;          public ProductTableDelegate_Tab5(ProductTableDataSource_Tab5 datasource)         {             this.DataSource = datasource;         }          public override NSView GetViewForItem(NSTableView tableView, NSTableColumn tableColumn, nint row)         {             NSTextField view = (NSTextField)tableView.MakeView(CellIndentifer, this);             if (view == null)             {                 view = new NSTextField();                 view.Identifier = CellIndentifer;                 view.BackgroundColor = NSColor.Clear;                 view.Bordered = false;                 view.Selectable = false;                 view.Editable = false;             }              switch (tableColumn.Title)             {                 case "Forma kontaktu":                     view.StringValue = DataSource.Products[(int)row].Title;                     break;                 case "Data":                     view.StringValue = DataSource.Products[(int)row].Description;                     break;             }              return view;           }           public override bool SelectionShouldChange(NSTableView tableView)         {
+            //ViewController.pozycja = -1;
+            if (tableView.GetIdentifier() == "Tabela5")             {                 MainClass.pozycja5 = -1;             }             return true;         }          public override bool ShouldSelectRow(NSTableView tableView, nint row)         {              //Console.WriteLine(tableView.GetIdentifier());             if(tableView.GetIdentifier() == "Tabela5")             {                 MainClass.pozycja5 = Convert.ToInt32(row);             }
+
+            //ViewController.pozycja = Convert.ToInt32(row);
+            //Console.WriteLine("zaznaczylem" + Convert.ToInt32(row));
+            return true;         }     } }  
