@@ -99,6 +99,9 @@
     <Compile Include="Kontrolery tabel\Tab5\ProductTableDelegate_Tab5.cs" />
     <Compile Include="Raport.cs" />
     <Compile Include="PotwierdzenieZamowienia.cs" />
+    <Compile Include="AppDelegate.designer.cs">
+      <DependentUpon>AppDelegate.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

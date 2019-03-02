@@ -257,6 +257,7 @@ namespace Oferta__
                 Tab4.Hidden = true;
                 Tab5.Hidden = true;
                 Tab6.Hidden = true;
+                Tab7.Hidden = true;
             }
             else if (SwitchTab1.SelectedSegment == 1)
             {
@@ -266,6 +267,7 @@ namespace Oferta__
                 Tab4.Hidden = true;
                 Tab5.Hidden = true;
                 Tab6.Hidden = true;
+                Tab7.Hidden = true;
                 //Load();
             }
             else if (SwitchTab1.SelectedSegment == 2)
@@ -276,6 +278,7 @@ namespace Oferta__
                 Tab4.Hidden = true;
                 Tab5.Hidden = true;
                 Tab6.Hidden = true;
+                Tab7.Hidden = true;
             }
             else if (SwitchTab1.SelectedSegment == 3)
             {
@@ -300,6 +303,7 @@ namespace Oferta__
                 Tab4.Hidden = true;
                 Tab5.Hidden = false;
                 Tab6.Hidden = true;
+                Tab7.Hidden = true;
             }
             else if (SwitchTab1.SelectedSegment == 5)
             {
@@ -309,12 +313,104 @@ namespace Oferta__
                 Tab4.Hidden = true;
                 Tab5.Hidden = true;
                 Tab6.Hidden = false;
+                Tab7.Hidden = true;
                 PriceText1.StringValue = String.Format("{0:0.00}", Convert.ToDouble(AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena).Replace(",", "."))).Replace(".", ",");
                 if(Bezeichnung.StringValue.Length < 1)
                 {
                     SetBezeichnung();
                 }
             }
+            else if (SwitchTab1.SelectedSegment == 6)
+            {
+                Tab1.Hidden = true;
+                Tab2.Hidden = true;
+                Tab3.Hidden = true;
+                Tab4.Hidden = true;
+                Tab5.Hidden = true;
+                Tab6.Hidden = true;
+                Tab7.Hidden = false;
+            }
+        }
+
+        partial void MailCreateButton_Click(NSObject sender)
+        {
+            //wstep
+            string str = "Sehr geehrter ";
+            if(Plec.SelectedSegment == 0)
+            {
+                str += "Herr ";
+            }
+            else
+            {
+                str += "Frau ";
+            }
+            str += Name.StringValue + ",";
+
+            //pierwszy akapit
+            str += "\n \n";
+            str += "wir bedanken uns für Ihre Anfrage und bieten Ihnen freibleibend eine " + Leichbauhalle.StringValue + " , vollisoliert, verkleidet mit ";
+            if(Switch3.SelectedSegment == 0)
+            {
+                str += "Trapezblechen ";
+            }
+            else
+            {
+                str += "Sandwichpaneelen ";
+            }
+            str += Mail_mm.StringValue + " mm, mit der Maßen " + Breite.StringValue + " x " + Lange2.StringValue + " x " + Firsthohe.StringValue + " m, inkl. Lieferung nach " + Mail_miasto.StringValue + " und Montage.";
+
+            //drugi akapit
+            str += "\n \n";
+            string schneelast = String.Format("{0:0.00}", Convert.ToDouble(Schneelast.StringValue.Replace(",", "."))).Replace(".", ",");
+            string windzone = String.Format("{0:0.00}", Convert.ToDouble(Windlast.StringValue.Replace(",", "."))).Replace(".", ",");
+            str += "Die angebotene Halle ist mit " + schneelast + "kN/m2 (" + Schneelast.StringValue.Replace(",", "").Replace("0","") + " kg/m2) Schneelast berechnet, was die Zone " + Schneelast2.StringValue;
+            str += " für " + Mail_miasto.StringValue + " entspricht (bitte siehe Anhang). Die Windzone " + Windlast2.StringValue + "mit Basisgeschwindigkeitsdruck " + windzone + " kN/m2, ";
+            if(Schneelast2.StringValue.Substring(Schneelast2.StringValue.Length -1,1) == "*")
+            {
+                str += "der Sicherheitsfaktor 2,3 für Norddeutsches Tiefland, und die Höhe von " + NHN.StringValue + " m ü. NHN, wurden bei der Berechnung der Konstruktion berücksichtigt. Die Halle ist für die dauerhafte Aufstellung in der Norddeutschen Tiefebene geeignet.";
+            }
+            else
+            {
+                str += "und die Höhe von " + NHN.StringValue + " m ü. NHN, wurden bei der Berechnung der Konstruktion berücksichtigt. Die Halle ist für die dauerhafte Aufstellung geeignet.";
+            }
+
+            //trzeci akapit
+            str += "\n \n";
+            str += "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne für Bauantrag kostenlos vor verbindlicher Bestellung.";
+
+            //czwarty akapit
+            str += "\n \n";
+            str += "Auf Wunsch erhalten Sie gegen Zahlung einer Schutzgebühr in Höhe von " + Mail_cena.StringValue + " € eine Kopie der statischen Berechnung. Diese Gebühr wird nach erfolgter Montage der Leichtbauhalle in der Schlussrechnung vergütet. Die Wartezeit auf die Statik beträgt momentan 2-3 Wochen.";
+
+            //piaty akapit
+            str += "\n \n";
+            str += "Wir haben Ihnen eine Beispiel- Halle angeboten. Als Hallen- Hersteller sind wir sehr flexibel und können knapp alle Elemente an Ihre Wünsche anpassen. Falls Sie etwas in der Hallen ändern möchten, erstellen wir Ihnen gerne neues Angebot.";
+
+            //szosty akapit
+            str += "\n \n \n";
+            str += "Besuchen Sie bitte unsere Facebook- Seite, um mehr über unsere Hallen und Neuigkeiten zu erfahren:";
+
+            //siodmy akapit
+            str += "\n \n";
+            str += "https://www.facebook.com/itcmetalcon.de";
+
+            //osmy akapit
+            str += "\n \n \n";
+            str += "Wir bieten Ihnen die Bestpreis- und Qualitätsgarantie. Sollten Sie ein besseres Angebot finden, bitte senden Sie es uns.";
+
+            //dziewaty akapit
+            str += "\n \n \n";
+            str += "Bei Fragen stehe ich Ihnen gerne zur Verfügung";
+
+
+
+            NSPasteboard clipboard = NSPasteboard.GeneralPasteboard;
+            clipboard.ClearContents();
+            clipboard.WriteObjects(new NSString[] { (NSString)str });
+
+            InfoLabel1.StringValue = "Mail został skopiowany.";
+            Save();
+
         }
 
         partial void DefaultButton_Click(NSObject sender)
@@ -396,6 +492,7 @@ namespace Oferta__
                     Tab4.Hidden = false;
                     Tab5.Hidden = true;
                     Tab6.Hidden = true;
+                    Tab7.Hidden = true;
                     if (typp == "TT" && (typp != TypHali || Stallhalle.State.ToString() != Stallhallee))
                     {
                         Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
@@ -457,6 +554,7 @@ namespace Oferta__
                     Tab4.Hidden = false;
                     Tab5.Hidden = true;
                     Tab6.Hidden = true;
+                    Tab7.Hidden = true;
                     if (typp == "ISO" && (typp != TypHali || Stallhalle.State.ToString() != Stallhallee))
                     {
                         if (Stallhalle.State.ToString() == "Off")
@@ -1633,6 +1731,12 @@ namespace Oferta__
             dane[75] = Czas((DateTime)DataOferty.DateValue).ToString("yyyy-MM-dd");
             dane[76] = Czas((DateTime)DataPotwierdzenia.DateValue).ToString("yyyy-MM-dd");
 
+            //aktualizacja tworzenie maili
+            dane[77] = NHN.StringValue;
+            dane[78] = Mail_mm.StringValue;
+            dane[79] = Mail_cena.StringValue;
+            dane[80] = Mail_miasto.StringValue;
+
             int count = 0;
             string[] baza5 = new string[0];
             if(MainClass.bazaTabela5.Length > 0)
@@ -2103,6 +2207,11 @@ namespace Oferta__
             {
                 DataPotwierdzenia.DateValue = (NSDate)DateTime.SpecifyKind(DateTime.Parse(dane[76]), DateTimeKind.Local);
             }
+
+            NHN.StringValue = dane[77];
+            Mail_mm.StringValue = dane[78];
+            Mail_cena.StringValue = dane[79];
+            Mail_miasto.StringValue = dane[80];
 
 
             //zabezpieczenie przed starymi wersjami

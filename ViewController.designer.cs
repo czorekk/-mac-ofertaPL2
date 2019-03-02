@@ -178,10 +178,22 @@ namespace Oferta__
 		AppKit.NSTextField Mail { get; set; }
 
 		[Outlet]
+		AppKit.NSTextField Mail_cena { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField Mail_miasto { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField Mail_mm { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField MontageAGB { get; set; }
 
 		[Outlet]
 		AppKit.NSTextField Name { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField NHN { get; set; }
 
 		[Outlet]
 		AppKit.NSTextField NrPotwierdzenia { get; set; }
@@ -263,6 +275,9 @@ namespace Oferta__
 
 		[Outlet]
 		AppKit.NSBox Tab6 { get; set; }
+
+		[Outlet]
+		AppKit.NSBox Tab7 { get; set; }
 
 		[Outlet]
 		AppKit.NSTableView Tabela1 { get; set; }
@@ -411,6 +426,9 @@ namespace Oferta__
 		[Action ("ListaOferty_Click:")]
 		partial void ListaOferty_Click (Foundation.NSObject sender);
 
+		[Action ("MailCreateButton_Click:")]
+		partial void MailCreateButton_Click (Foundation.NSObject sender);
+
 		[Action ("OpenButton1_Click:")]
 		partial void OpenButton1_Click (Foundation.NSObject sender);
 
@@ -525,9 +543,24 @@ namespace Oferta__
 				BreiteN = null;
 			}
 
+			if (Mail_mm != null) {
+				Mail_mm.Dispose ();
+				Mail_mm = null;
+			}
+
 			if (Cena1 != null) {
 				Cena1.Dispose ();
 				Cena1 = null;
+			}
+
+			if (Mail_miasto != null) {
+				Mail_miasto.Dispose ();
+				Mail_miasto = null;
+			}
+
+			if (Mail_cena != null) {
+				Mail_cena.Dispose ();
+				Mail_cena = null;
 			}
 
 			if (CenaMontaz != null) {
@@ -548,6 +581,11 @@ namespace Oferta__
 			if (ComboBox5 != null) {
 				ComboBox5.Dispose ();
 				ComboBox5 = null;
+			}
+
+			if (NHN != null) {
+				NHN.Dispose ();
+				NHN = null;
 			}
 
 			if (ComboBoxRaport != null) {
@@ -888,6 +926,11 @@ namespace Oferta__
 			if (Tab6 != null) {
 				Tab6.Dispose ();
 				Tab6 = null;
+			}
+
+			if (Tab7 != null) {
+				Tab7.Dispose ();
+				Tab7 = null;
 			}
 
 			if (Tabela1 != null) {
