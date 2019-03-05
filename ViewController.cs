@@ -1949,30 +1949,33 @@ namespace Oferta__
 
             //dane hali
             Leichbauhalle.StringValue = dane[10];
-            string[] typ = Leichbauhalle.StringValue.Split(" ");
-            Console.WriteLine(typ[1].Length);
-            if(typ.Length > 2)
+            if(dane[10].Length > 1)
             {
-                if (typ[2].Length > 2)
+                string[] typ = Leichbauhalle.StringValue.Split(" ");
+                Console.WriteLine(typ[1].Length);
+                if (typ.Length > 2)
                 {
-                    TypHali = typ[2].Substring(0, 3);
+                    if (typ[2].Length > 2)
+                    {
+                        TypHali = typ[2].Substring(0, 3);
+                    }
+                    else
+                    {
+                        TypHali = typ[2].Substring(0, 2);
+                    }
                 }
-                else
+                else if (typ.Length > 1)
                 {
-                    TypHali = typ[2].Substring(0, 2);
-                }
-            }
-            else if (typ.Length > 1)
-            {
-                if(typ[1].Length > 2)
-                {
-                    TypHali = typ[1].Substring(0, 3);
-                }
-                else if(typ[1].Length > 1)
-                {
-                    TypHali = typ[1].Substring(0, 2);
-                }
+                    if (typ[1].Length > 2)
+                    {
+                        TypHali = typ[1].Substring(0, 3);
+                    }
+                        else if (typ[1].Length > 1)
+                    {
+                        TypHali = typ[1].Substring(0, 2);
+                    }
 
+                }
             }
 
             if (dane[11] == "On")
@@ -2083,10 +2086,26 @@ namespace Oferta__
 
             Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena);
 
-            ToreUndTuren.StringValue = dane[49].Replace("nowa_linia", Environment.NewLine);
+                if(dane[50].Length > 0)
+                {
+                    if (dane[50].Substring(0, 1) == "-")
+                    {
+                        ToreUndTuren.StringValue = dane[49].Replace("nowa_linia", Environment.NewLine) + Environment.NewLine + dane[50].Replace("nowa_linia", Environment.NewLine);
+                        Array.Reverse(dane);
+                        Array.Resize(ref dane, dane.Length - 1);
+                        Array.Reverse(dane);
+                    }
+                }
+                else
+                {
+                    ToreUndTuren.StringValue = dane[49].Replace("nowa_linia", Environment.NewLine);
+                }
 
-            //MainClass.bazaTabela3 = dane[50].Substring(0, dane[50].Length - 2).Split("||");
-            MainClass.bazaTabela3 = File.ReadAllLines(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/Bazy/") + lista[MainClass.pozycja4] + "BT3.txt");
+
+
+
+                //MainClass.bazaTabela3 = dane[50].Substring(0, dane[50].Length - 2).Split("||");
+                MainClass.bazaTabela3 = File.ReadAllLines(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/Bazy/") + lista[MainClass.pozycja4] + "BT3.txt");
 
 
             AllManager.RefreshTable2(MainClass.bazaTabela3, Tabela3);
