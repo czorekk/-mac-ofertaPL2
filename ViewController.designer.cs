@@ -169,6 +169,9 @@ namespace Oferta__
 		AppKit.NSTextField Liefertermin { get; set; }
 
 		[Outlet]
+		AppKit.NSTextField Lieferungskosten { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField Lieferzeit { get; set; }
 
 		[Outlet]
@@ -543,24 +546,9 @@ namespace Oferta__
 				BreiteN = null;
 			}
 
-			if (Mail_mm != null) {
-				Mail_mm.Dispose ();
-				Mail_mm = null;
-			}
-
 			if (Cena1 != null) {
 				Cena1.Dispose ();
 				Cena1 = null;
-			}
-
-			if (Mail_miasto != null) {
-				Mail_miasto.Dispose ();
-				Mail_miasto = null;
-			}
-
-			if (Mail_cena != null) {
-				Mail_cena.Dispose ();
-				Mail_cena = null;
 			}
 
 			if (CenaMontaz != null) {
@@ -581,11 +569,6 @@ namespace Oferta__
 			if (ComboBox5 != null) {
 				ComboBox5.Dispose ();
 				ComboBox5 = null;
-			}
-
-			if (NHN != null) {
-				NHN.Dispose ();
-				NHN = null;
 			}
 
 			if (ComboBoxRaport != null) {
@@ -651,6 +634,11 @@ namespace Oferta__
 			if (Down3 != null) {
 				Down3.Dispose ();
 				Down3 = null;
+			}
+
+			if (Lieferungskosten != null) {
+				Lieferungskosten.Dispose ();
+				Lieferungskosten = null;
 			}
 
 			if (Firma != null) {
@@ -783,6 +771,21 @@ namespace Oferta__
 				Mail = null;
 			}
 
+			if (Mail_cena != null) {
+				Mail_cena.Dispose ();
+				Mail_cena = null;
+			}
+
+			if (Mail_miasto != null) {
+				Mail_miasto.Dispose ();
+				Mail_miasto = null;
+			}
+
+			if (Mail_mm != null) {
+				Mail_mm.Dispose ();
+				Mail_mm = null;
+			}
+
 			if (MontageAGB != null) {
 				MontageAGB.Dispose ();
 				MontageAGB = null;
@@ -791,6 +794,11 @@ namespace Oferta__
 			if (Name != null) {
 				Name.Dispose ();
 				Name = null;
+			}
+
+			if (NHN != null) {
+				NHN.Dispose ();
+				NHN = null;
 			}
 
 			if (NrPotwierdzenia != null) {

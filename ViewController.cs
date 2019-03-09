@@ -314,7 +314,7 @@ namespace Oferta__
                 Tab5.Hidden = true;
                 Tab6.Hidden = false;
                 Tab7.Hidden = true;
-                PriceText1.StringValue = String.Format("{0:0.00}", Convert.ToDouble(AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena).Replace(",", "."))).Replace(".", ",");
+                PriceText1.StringValue = String.Format("{0:0.00}", Convert.ToDouble(AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, Lieferungskosten.FloatValue).Replace(",", "."))).Replace(".", ",");
                 if(Bezeichnung.StringValue.Length < 1)
                 {
                     SetBezeichnung();
@@ -357,7 +357,7 @@ namespace Oferta__
             {
                 str += "Sandwichpaneelen ";
             }
-            str += Mail_mm.StringValue + " mm, mit der Maßen " + Breite.StringValue + " x " + Lange2.StringValue + " x " + Firsthohe.StringValue + " m, inkl. Lieferung nach " + Mail_miasto.StringValue + " und Montage.";
+            str += Mail_mm.StringValue + " mm, mit der Maßen " + Breite.StringValue + " x " + Lange2.StringValue + " x " + Traufhohe.StringValue + " m, inkl. Lieferung nach " + Mail_miasto.StringValue + " und Montage.";
 
             //drugi akapit
             str += "\n \n";
@@ -598,8 +598,29 @@ namespace Oferta__
 
         partial void ReadyButton1_Click(NSObject sender)
         {
+            //lieferungskosten jako ostatni element w tabeli jesli uzyto nowej wersji
+            if(Lieferungskosten.StringValue.Length > 0)
+            {
+                Array.Resize(ref MainClass.bazaTabela1, MainClass.bazaTabela1.Length + 1);
+                MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1] = "Lieferungskosten";
 
-            if(Leichbauhalle.StringValue.Length > 0 && Breite.StringValue.Length > 0 && Lange2.StringValue.Length > 0 && Traufhohe.StringValue.Length > 0 && Firsthohe.StringValue.Length > 0 && Binderabstand.StringValue.Length > 0 && Zugbandhohe.StringValue.Length > 0 && Dach.StringValue.Length > 0 && Schneelast.StringValue.Length > 0 && Windlast.StringValue.Length > 0 && CenaMontaz.StringValue.Length > 0 && AngebotNr.StringValue.Length > 0 )
+                Array.Resize(ref MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_ilosc.Length + 1);
+                MainClass.bazaTabela1_ilosc[MainClass.bazaTabela1_ilosc.Length - 1] = 1;
+
+                Array.Resize(ref MainClass.bazaTabela1_cena, MainClass.bazaTabela1_cena.Length + 1);
+                MainClass.bazaTabela1_cena[MainClass.bazaTabela1_cena.Length - 1] = Lieferungskosten.FloatValue;
+
+                Array.Resize(ref MainClass.bazaTabela1_x, MainClass.bazaTabela1_x.Length + 1);
+                MainClass.bazaTabela1_x[MainClass.bazaTabela1_x.Length - 1] = "0";
+
+                Array.Resize(ref MainClass.bazaTabela1_y, MainClass.bazaTabela1_y.Length + 1);
+                MainClass.bazaTabela1_y[MainClass.bazaTabela1_y.Length - 1] = "0";
+
+                Array.Resize(ref MainClass.bazaTabela1_jedn, MainClass.bazaTabela1_jedn.Length + 1);
+                MainClass.bazaTabela1_jedn[MainClass.bazaTabela1_jedn.Length - 1] = "Stk.";
+            }
+
+            if (Leichbauhalle.StringValue.Length > 0 && Breite.StringValue.Length > 0 && Lange2.StringValue.Length > 0 && Traufhohe.StringValue.Length > 0 && Firsthohe.StringValue.Length > 0 && Binderabstand.StringValue.Length > 0 && Zugbandhohe.StringValue.Length > 0 && Dach.StringValue.Length > 0 && Schneelast.StringValue.Length > 0 && Windlast.StringValue.Length > 0 && CenaMontaz.StringValue.Length > 0 && AngebotNr.StringValue.Length > 0 )
             {
                 if(Stallhalle.State.ToString() == "Off" && Gewicht2.StringValue.Length > 0 && Hauptprofil1.StringValue.Length > 0 && Hauptprofil2.StringValue.Length > 0 && Hauptprofil3.StringValue.Length > 0)
                 {
@@ -845,7 +866,7 @@ namespace Oferta__
                         jedn = "m²";
                     }
                     AllManager.MoveValueFromComboBoxToTable(MainClass.bazaTabela1, MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, MainClass.bazaTabela1_x, MainClass.bazaTabela1_y, MainClass.bazaTabela1_jedn, MainClass.bazaComboBox1, Tabela1, ComboBox1, Ilosc1, Cena1, X1, Y1, jedn, 1);
-                    Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena);
+                    Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, Lieferungskosten.FloatValue);
                 }
                 Ilosc1.StringValue = "";
                 Cena1.StringValue = "";
@@ -937,7 +958,7 @@ namespace Oferta__
             AllManager.MoveValueFromTableToComboBox(MainClass.bazaTabela1, MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, MainClass.bazaTabela1_x, MainClass.bazaTabela1_y, MainClass.bazaTabela1_jedn, MainClass.bazaComboBox1, Tabela1, ComboBox1, MainClass.pozycja1, 1);
             DeleteButton1.Enabled = false;
             WypChange1.Enabled = false;
-            Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena);
+            Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, Lieferungskosten.FloatValue);
         }
 
         partial void DeleteButton2_Click(NSObject sender)
@@ -1033,7 +1054,7 @@ namespace Oferta__
                 MainClass.bazaTabela1_jedn[MainClass.pozycja1] = "m²";
             }
             AllManager.RefreshTable(MainClass.bazaTabela1, MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, MainClass.bazaTabela1_x, MainClass.bazaTabela1_y, MainClass.bazaTabela1_jedn, Tabela1);
-            Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena);
+            Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, Lieferungskosten.FloatValue);
             Ilosc1.StringValue = "";
             Cena1.StringValue = "";
             X1.StringValue = "";
@@ -2073,6 +2094,21 @@ namespace Oferta__
                 MainClass.bazaTabela1_x = dane[40].Substring(0, dane[40].Length - 2).Split("||");
                 MainClass.bazaTabela1_y = dane[41].Substring(0, dane[41].Length - 2).Split("||");
                 MainClass.bazaTabela1_jedn = dane[42].Substring(0, dane[42].Length - 2).Split("||");
+
+                    //aktualizacja- lieferungskosten jest w osobnym polu a w tabeli byl na koncu wiec wywalam ostatnie miejsce i przenosze
+                    if(MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1].Split(" ")[0] == "Lieferungskosten")
+                    {
+                        Lieferungskosten.FloatValue = MainClass.bazaTabela1_cena[MainClass.bazaTabela1_cena.Length - 1];
+
+                        Array.Resize(ref MainClass.bazaTabela1, MainClass.bazaTabela1.Length - 1);
+                        Array.Resize(ref MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_ilosc.Length - 1);
+                        Array.Resize(ref MainClass.bazaTabela1_cena, MainClass.bazaTabela1_cena.Length - 1);
+                        Array.Resize(ref MainClass.bazaTabela1_x, MainClass.bazaTabela1_x.Length - 1);
+                        Array.Resize(ref MainClass.bazaTabela1_y, MainClass.bazaTabela1_y.Length - 1);
+                        Array.Resize(ref MainClass.bazaTabela1_jedn, MainClass.bazaTabela1_jedn.Length - 1);
+                    }
+
+                    
             }
 
 
@@ -2091,7 +2127,7 @@ namespace Oferta__
             AllManager.RefreshTable(MainClass.bazaTabela1, MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, MainClass.bazaTabela1_x, MainClass.bazaTabela1_y, MainClass.bazaTabela1_jedn, Tabela1);
             AllManager.RefreshTable(MainClass.bazaTabela2, MainClass.bazaTabela2_ilosc, MainClass.bazaTabela2_cena, MainClass.bazaTabela2_x, MainClass.bazaTabela2_y, MainClass.bazaTabela2_jedn, Tabela2);
 
-            Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena);
+            Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, Lieferungskosten.FloatValue);
 
                 if(dane[50].Length > 0)
                 {

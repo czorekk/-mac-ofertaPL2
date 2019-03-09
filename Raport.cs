@@ -471,7 +471,7 @@ namespace Oferta__
                     bazaTabela1_cena = Array.ConvertAll(dane[39].Substring(0, dane[39].Length - 2).Split("||"), float.Parse);
                 }
 
-                cell = new PdfPCell(new Phrase(String.Format("{0:0.00}", Convert.ToDouble(AllManager.PoliczSume(bazaTabela1_ilosc, bazaTabela1_cena).Replace(",", "."))).Replace(".", ",") + " €", standard));
+                cell = new PdfPCell(new Phrase(String.Format("{0:0.00}", Convert.ToDouble(AllManager.PoliczSume(bazaTabela1_ilosc, bazaTabela1_cena, 0f).Replace(",", "."))).Replace(".", ",") + " €", standard));
                 cell.HorizontalAlignment = 2;
                 cell.UseAscender = true;
                 cell.VerticalAlignment = Element.ALIGN_MIDDLE;

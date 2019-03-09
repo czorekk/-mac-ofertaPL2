@@ -1681,7 +1681,7 @@
                                 </view>
                             </box>
                             <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="4" title="Tab2" translatesAutoresizingMaskIntoConstraints="NO" id="uRe-7b-yh3">
-                                <rect key="frame" x="20" y="20" width="760" height="660"/>
+                                <rect key="frame" x="20" y="30" width="760" height="660"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" ambiguous="YES" id="3Gq-b0-KU5">
                                     <rect key="frame" x="0.0" y="0.0" width="760" height="660"/>
@@ -2244,6 +2244,25 @@
                                             <rect key="frame" x="103" y="23" width="57" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Przesuń:" id="pkN-MN-9bj">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Es-tM-Bnt">
+                                            <rect key="frame" x="467" y="275" width="96" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" usesSingleLineMode="YES" id="PW7-hh-Y49">
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="buc-xJ-TVQ"/>
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WsY-ub-ILv">
+                                            <rect key="frame" x="368" y="278" width="94" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Lieferung:" id="bXx-LV-FkK">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -3656,6 +3675,7 @@
                         <outlet property="LangeN" destination="Zgq-nm-R2C" id="LGO-lG-mzl"/>
                         <outlet property="Leichbauhalle" destination="yUW-nf-YNK" id="Z7H-QY-74e"/>
                         <outlet property="Liefertermin" destination="W2t-KY-wrt" id="NW8-Rq-9oT"/>
+                        <outlet property="Lieferungskosten" destination="0Es-tM-Bnt" id="OrB-XT-zc9"/>
                         <outlet property="Lieferzeit" destination="Hoa-Sg-zV8" id="mrn-PR-4YN"/>
                         <outlet property="ListaOferty" destination="j5S-3a-ZSY" id="sS4-eA-Uhb"/>
                         <outlet property="Mail" destination="shD-SE-aUo" id="Sxt-9l-UFF"/>

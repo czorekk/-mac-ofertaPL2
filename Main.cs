@@ -778,7 +778,7 @@ namespace Oferta__
             cell.Border = Rectangle.NO_BORDER;
             table.AddCell(cell);
 
-            string suma = String.Format("{0:0.00}", Convert.ToDouble(AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena).Replace(",", "."))).Replace(".", ",");
+            string suma = String.Format("{0:0.00}", Convert.ToDouble(AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, 0f).Replace(",", "."))).Replace(".", ",");
             phrase = new Phrase();
             phrase.Add(new Chunk(suma, standard_bold));
             phrase.Add(new Chunk(" €", standard));
