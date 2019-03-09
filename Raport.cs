@@ -107,12 +107,23 @@ namespace Oferta__
                         if(pliki[count].Substring(pliki[count].Length - 9) != ".DS_Store")
                         {
                             string[] dane = File.ReadAllLines(pliki[count]);
-                            if (dane[75].Length > 1)
+
+                            //w z zwiazku z przeskakujaca linia 50 musi sprawdzic ktora linie ma brac
+                            int line = 75;
+                            if (dane[50].Length > 0)
                             {
-                                if (daty.Contains(dane[75].Substring(5, 2) + "/" + dane[75].Substring(0, 4)) == false)
+                                if (dane[50].Substring(0, 1) == "-")
+                                {
+                                    line = 76;
+                                }
+                            }
+
+                            if (dane[line].Length > 1)
+                            {
+                                if (daty.Contains(dane[line].Substring(5, 2) + "/" + dane[line].Substring(0, 4)) == false)
                                 {
                                     Array.Resize(ref daty, daty.Length + 1);
-                                    daty[daty.Length - 1] = dane[75].Substring(5, 2) + "/" + dane[75].Substring(0, 4);
+                                    daty[daty.Length - 1] = dane[line].Substring(5, 2) + "/" + dane[line].Substring(0, 4);
                                 }
                             }
                             else //zabezpieczenie obslugujace stare wersje
@@ -144,9 +155,20 @@ namespace Oferta__
                         if (pliki[count].Substring(pliki[count].Length - 9) != ".DS_Store")
                         {
                             string[] dane = File.ReadAllLines(pliki[count]);
-                            if (dane[75].Length > 1)
+
+                            //w z zwiazku z przeskakujaca linia 50 musi sprawdzic ktora linie ma brac
+                            int line = 75;
+                            if (dane[50].Length > 0)
                             {
-                                DateTime data = DateTime.ParseExact(dane[75], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                                if (dane[50].Substring(0, 1) == "-")
+                                {
+                                    line = 76;
+                                }
+                            }
+
+                            if (dane[line].Length > 1)
+                            {
+                                DateTime data = DateTime.ParseExact(dane[line], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                                 int numer = (int)data.Date.DayOfWeek;
                                 if (numer == 0)
                                 {
@@ -262,9 +284,20 @@ namespace Oferta__
                     if (pliki[count].Substring(pliki[count].Length - 9) != ".DS_Store")
                     {
                         string[] dane = File.ReadAllLines(pliki[count]);
-                        if(dane[75].Length > 1)
+
+                        //w z zwiazku z przeskakujaca linia 50 musi sprawdzic ktora linie ma brac
+                        int line = 75;
+                        if (dane[50].Length > 0)
                         {
-                            DateTime data = DateTime.ParseExact(dane[75], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                            if (dane[50].Substring(0, 1) == "-")
+                            {
+                                line = 76;
+                            }
+                        }
+
+                        if (dane[line].Length > 1)
+                        {
+                            DateTime data = DateTime.ParseExact(dane[line], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                             if(data >= firstdata && data <= enddata)
                             {
                                 Array.Resize(ref readypliki, readypliki.Length + 1);

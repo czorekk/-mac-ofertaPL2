@@ -1499,8 +1499,11 @@ namespace Oferta__
             if (!lista.Contains(ComboBox2.StringValue))
             {
                 lista.Add(ComboBox2.StringValue);
+                Array.Resize(ref MainClass.mainbaza2, MainClass.mainbaza2.Length + 1);
+                MainClass.mainbaza2[MainClass.mainbaza2.Length - 1] = ComboBox2.StringValue;
             }
             File.WriteAllLines(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Baza2.txt"), lista.ToArray());
+            AllManager.RefreshComboBox(MainClass.mainbaza2, ComboBox2);
         }
 
         partial void SaveButton1_Click(NSObject sender)
@@ -1907,6 +1910,9 @@ namespace Oferta__
 
         partial void ComboBox1_Click(NSObject sender)
         {
+            //sugestie cenowe (wylaczam bo chuja dawaly)
+
+            /*
             if (ComboBox1.StringValue != "") 
             {
                 if(MainClass.mainbaza.Contains(ComboBox1.StringValue))
@@ -1915,6 +1921,7 @@ namespace Oferta__
                 }
 
             }
+            */           
 
         }
 
