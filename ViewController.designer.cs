@@ -232,6 +232,9 @@ namespace Oferta__
 		AppKit.NSTextField Schneelast2 { get; set; }
 
 		[Outlet]
+		AppKit.NSTextField SearchTextField { get; set; }
+
+		[Outlet]
 		AppKit.NSSegmentedControl Select2 { get; set; }
 
 		[Outlet]
@@ -450,6 +453,9 @@ namespace Oferta__
 		[Action ("SaveButton1_Click:")]
 		partial void SaveButton1_Click (Foundation.NSObject sender);
 
+		[Action ("SearchTextField_Action:")]
+		partial void SearchTextField_Action (Foundation.NSObject sender);
+
 		[Action ("SwitchTab1_Click:")]
 		partial void SwitchTab1_Click (Foundation.NSObject sender);
 
@@ -624,6 +630,11 @@ namespace Oferta__
 			if (Down1 != null) {
 				Down1.Dispose ();
 				Down1 = null;
+			}
+
+			if (SearchTextField != null) {
+				SearchTextField.Dispose ();
+				SearchTextField = null;
 			}
 
 			if (Down2 != null) {

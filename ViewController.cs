@@ -35,7 +35,7 @@ namespace Oferta__
 
             // Do any additional setup after loading the view.
             //LabelTest1.StringValue = Assembly.GetEntryAssembly().Location;
-            ChechFiles();
+            ChechFiles(SearchTextField.StringValue);
             Data.DateValue = NSDate.Now;
             DataOferty.DateValue = NSDate.Now;
             DataPotwierdzenia.DateValue = NSDate.Now;
@@ -43,6 +43,9 @@ namespace Oferta__
             //DateTime data = DateTime.ParseExact("2019-01-22", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             //Console.WriteLine((int)data.DayOfWeek);
             //LabelTest2.StringValue = System.IO.Directory.GetCurrentDirectory();
+
+            //trigger na pisanie w szukaniu pliku
+            SearchTextField.Changed += SearchTextField_Changed;
         }
 
         public override NSObject RepresentedObject
@@ -58,6 +61,12 @@ namespace Oferta__
 
             }
         }
+
+        void SearchTextField_Changed(object sender, EventArgs e)
+        {
+            ChechFiles(SearchTextField.StringValue);
+        }
+
 
         public static DateTime Czas(DateTime dt)
         {
@@ -1782,8 +1791,9 @@ namespace Oferta__
 
         public string[] lista;
 
-        public void ChechFiles()
+        public void ChechFiles(string text)
         {
+            //lista plikow
             lista = Directory.GetFiles(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/"));
             if(lista.Length > 0)
             {
@@ -1796,7 +1806,28 @@ namespace Oferta__
                 } while (count < lista.Length);
             }
 
+            //ewentualne wyszukiwanie plikow
+            if(text.Length > 0)
+            {
+                string[] lista2 = lista;
+                lista = new string[0];
 
+                for (int i = 0; i < lista2.Length; i++)
+                {
+                    for (int j = 0; j < lista2[i].Length - text.Length; j++)
+                    {
+                        if(lista2[i].Substring(j, text.Length) == text)
+                        {
+                            Array.Resize(ref lista, lista.Length + 1);
+                            lista[lista.Length - 1] = lista2[i];
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            //ladowanie do tabeli
             var DataSource = new ProductTableDataSource();
             if (lista.Length == 0)
             {
@@ -1868,7 +1899,7 @@ namespace Oferta__
         partial void DeleteButton0_Click(NSObject sender)
         {
             File.Move(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/") + lista[MainClass.pozycja4] + ".txt", Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/Usuniete/") + lista[MainClass.pozycja4] + ".txt");
-            ChechFiles();
+            ChechFiles(SearchTextField.StringValue);
             OpenButton1.Enabled = false;
             DeleteButton0.Enabled = false;
             ArchiveButton1.Enabled = false;

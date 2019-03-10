@@ -3295,7 +3295,7 @@
                                 </view>
                             </box>
                             <box fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="4" title="Tab0" translatesAutoresizingMaskIntoConstraints="NO" id="wDM-e9-UQW">
-                                <rect key="frame" x="20" y="40" width="760" height="660"/>
+                                <rect key="frame" x="20" y="30" width="760" height="660"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" ambiguous="YES" id="LTC-pE-yn1">
                                     <rect key="frame" x="0.0" y="0.0" width="760" height="660"/>
@@ -3320,14 +3320,14 @@
                                             </textFieldCell>
                                         </textField>
                                         <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHC-Yf-3l2">
-                                            <rect key="frame" x="137" y="20" width="610" height="591"/>
+                                            <rect key="frame" x="137" y="20" width="610" height="589"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" ambiguous="YES" id="wZI-x4-oQP">
-                                                <rect key="frame" x="1" y="1" width="608" height="589"/>
+                                                <rect key="frame" x="1" y="1" width="608" height="587"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView identifier="ListaOferty" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="j5S-3a-ZSY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="608" height="589"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="608" height="587"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3516,6 +3516,27 @@
                                                 <action selector="ProgramInfoButton_Click:" target="XfG-lQ-9wD" id="reQ-Hr-DEY"/>
                                             </connections>
                                         </button>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5yF-GL-vPg">
+                                            <rect key="frame" x="436" y="617" width="313" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="es9-pS-wPW">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <action selector="SearchTextField_Action:" target="XfG-lQ-9wD" id="37M-9U-ZZe"/>
+                                            </connections>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qK4-Js-oCt">
+                                            <rect key="frame" x="382" y="619" width="48" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Szukaj:" id="wLm-Ea-ueG">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </box>
@@ -3698,6 +3719,7 @@
                         <outlet property="Save_Click" destination="9S2-YX-kcZ" id="uok-OQ-0Ce"/>
                         <outlet property="Schneelast" destination="xb2-6H-O14" id="e8Z-n5-4uM"/>
                         <outlet property="Schneelast2" destination="cx4-1L-1KF" id="mr5-Um-8Jy"/>
+                        <outlet property="SearchTextField" destination="5yF-GL-vPg" id="B8B-D1-9q3"/>
                         <outlet property="Select2" destination="rq9-Pt-1ug" id="Ay5-IB-Kgg"/>
                         <outlet property="Stadt" destination="pjg-3J-UWE" id="YTR-DB-c0J"/>
                         <outlet property="Stallhalle" destination="Tb0-tq-2Nr" id="nKC-wK-QTG"/>
