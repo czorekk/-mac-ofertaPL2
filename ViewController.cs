@@ -1826,6 +1826,14 @@ namespace Oferta__
                 }
             }
 
+            Array.Reverse(lista);
+
+            //wywalenie .DS_Store
+            if (lista[lista.Length - 1] == ".DS_Store")
+            {
+                Array.Resize(ref lista, lista.Length - 1);
+            }
+
 
             //ladowanie do tabeli
             var DataSource = new ProductTableDataSource();
