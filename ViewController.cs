@@ -610,23 +610,25 @@ namespace Oferta__
             //lieferungskosten jako ostatni element w tabeli jesli uzyto nowej wersji
             if(Lieferungskosten.StringValue.Length > 0)
             {
-                Array.Resize(ref MainClass.bazaTabela1, MainClass.bazaTabela1.Length + 1);
+                //Console.WriteLine(MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1].Split(" ")[0]);
+
+                if (MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1].Split(" ")[0] != "Lieferungskosten")
+                {
+                    Array.Resize(ref MainClass.bazaTabela1, MainClass.bazaTabela1.Length + 1);
+                    Array.Resize(ref MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_ilosc.Length + 1);
+                    Array.Resize(ref MainClass.bazaTabela1_cena, MainClass.bazaTabela1_cena.Length + 1);
+                    Array.Resize(ref MainClass.bazaTabela1_x, MainClass.bazaTabela1_x.Length + 1);
+                    Array.Resize(ref MainClass.bazaTabela1_y, MainClass.bazaTabela1_y.Length + 1);
+                    Array.Resize(ref MainClass.bazaTabela1_jedn, MainClass.bazaTabela1_jedn.Length + 1);
+                }
+
                 MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1] = "Lieferungskosten";
-
-                Array.Resize(ref MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_ilosc.Length + 1);
                 MainClass.bazaTabela1_ilosc[MainClass.bazaTabela1_ilosc.Length - 1] = 1;
-
-                Array.Resize(ref MainClass.bazaTabela1_cena, MainClass.bazaTabela1_cena.Length + 1);
                 MainClass.bazaTabela1_cena[MainClass.bazaTabela1_cena.Length - 1] = Lieferungskosten.FloatValue;
-
-                Array.Resize(ref MainClass.bazaTabela1_x, MainClass.bazaTabela1_x.Length + 1);
                 MainClass.bazaTabela1_x[MainClass.bazaTabela1_x.Length - 1] = "0";
-
-                Array.Resize(ref MainClass.bazaTabela1_y, MainClass.bazaTabela1_y.Length + 1);
                 MainClass.bazaTabela1_y[MainClass.bazaTabela1_y.Length - 1] = "0";
-
-                Array.Resize(ref MainClass.bazaTabela1_jedn, MainClass.bazaTabela1_jedn.Length + 1);
                 MainClass.bazaTabela1_jedn[MainClass.bazaTabela1_jedn.Length - 1] = "Stk.";
+                           
             }
 
             if (Leichbauhalle.StringValue.Length > 0 && Breite.StringValue.Length > 0 && Lange2.StringValue.Length > 0 && Traufhohe.StringValue.Length > 0 && Firsthohe.StringValue.Length > 0 && Binderabstand.StringValue.Length > 0 && Zugbandhohe.StringValue.Length > 0 && Dach.StringValue.Length > 0 && Schneelast.StringValue.Length > 0 && Windlast.StringValue.Length > 0 && CenaMontaz.StringValue.Length > 0 && AngebotNr.StringValue.Length > 0 )
@@ -825,6 +827,8 @@ namespace Oferta__
             {
                 CenaMontaz.BackgroundColor = NSColor.White;
             }
+
+            AllManager.LieferungskostenFix(Lieferungskosten);
 
         }
 
@@ -1096,7 +1100,8 @@ namespace Oferta__
             MainClass.bazaTabela1_ilosc[MainClass.pozycja1] = temp_ilosc;
             MainClass.bazaTabela1_cena[MainClass.pozycja1] = temp_cena;
             MainClass.bazaTabela1_jedn[MainClass.pozycja1] = temp_jedn;
-            
+
+            AllManager.LieferungskostenFix(Lieferungskosten);
             AllManager.RefreshTable(MainClass.bazaTabela1, MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, MainClass.bazaTabela1_x, MainClass.bazaTabela1_y, MainClass.bazaTabela1_jedn, Tabela1);
 
             DeleteButton1.Enabled = false;
@@ -1137,6 +1142,7 @@ namespace Oferta__
             MainClass.bazaTabela1_cena[MainClass.pozycja1] = temp_cena;
             MainClass.bazaTabela1_jedn[MainClass.pozycja1] = temp_jedn;
 
+            AllManager.LieferungskostenFix(Lieferungskosten);
             AllManager.RefreshTable(MainClass.bazaTabela1, MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, MainClass.bazaTabela1_x, MainClass.bazaTabela1_y, MainClass.bazaTabela1_jedn, Tabela1);
 
             DeleteButton1.Enabled = false;
@@ -1605,6 +1611,8 @@ namespace Oferta__
             }
             dane[37] = builder.ToString();
             */
+            AllManager.LieferungskostenFixBack(Lieferungskosten);
+
             File.WriteAllLines(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/Bazy/" + nazwa1 + "BT1.txt"), MainClass.bazaTabela1);
 
             builder = new StringBuilder();
@@ -1646,6 +1654,8 @@ namespace Oferta__
                 builder.Append("||");
             }
             dane[42] = builder.ToString();
+
+            AllManager.LieferungskostenFix(Lieferungskosten);
 
             /*
             builder = new StringBuilder();
@@ -2134,19 +2144,8 @@ namespace Oferta__
                 MainClass.bazaTabela1_y = dane[41].Substring(0, dane[41].Length - 2).Split("||");
                 MainClass.bazaTabela1_jedn = dane[42].Substring(0, dane[42].Length - 2).Split("||");
 
-                    //aktualizacja- lieferungskosten jest w osobnym polu a w tabeli byl na koncu wiec wywalam ostatnie miejsce i przenosze
-                    if(MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1].Split(" ")[0] == "Lieferungskosten")
-                    {
-                        Lieferungskosten.FloatValue = MainClass.bazaTabela1_cena[MainClass.bazaTabela1_cena.Length - 1];
-
-                        Array.Resize(ref MainClass.bazaTabela1, MainClass.bazaTabela1.Length - 1);
-                        Array.Resize(ref MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_ilosc.Length - 1);
-                        Array.Resize(ref MainClass.bazaTabela1_cena, MainClass.bazaTabela1_cena.Length - 1);
-                        Array.Resize(ref MainClass.bazaTabela1_x, MainClass.bazaTabela1_x.Length - 1);
-                        Array.Resize(ref MainClass.bazaTabela1_y, MainClass.bazaTabela1_y.Length - 1);
-                        Array.Resize(ref MainClass.bazaTabela1_jedn, MainClass.bazaTabela1_jedn.Length - 1);
-                    }
-
+                    //lieferungskosten przeniesiono do allmanagera
+                    AllManager.LieferungskostenFix(Lieferungskosten);
                     
             }
 
@@ -2161,7 +2160,6 @@ namespace Oferta__
                 MainClass.bazaTabela2_y = dane[47].Substring(0, dane[47].Length - 2).Split("||");
                 MainClass.bazaTabela2_jedn = dane[48].Substring(0, dane[48].Length - 2).Split("||");
             }
-
 
             AllManager.RefreshTable(MainClass.bazaTabela1, MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, MainClass.bazaTabela1_x, MainClass.bazaTabela1_y, MainClass.bazaTabela1_jedn, Tabela1);
             AllManager.RefreshTable(MainClass.bazaTabela2, MainClass.bazaTabela2_ilosc, MainClass.bazaTabela2_cena, MainClass.bazaTabela2_x, MainClass.bazaTabela2_y, MainClass.bazaTabela2_jedn, Tabela2);

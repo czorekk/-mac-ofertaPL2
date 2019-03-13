@@ -18,7 +18,38 @@ namespace Oferta__
                     DataSource.Products.Add(new Product(lista2[count], Convert.ToString(bazaTabela_ilosc[count]) + " " + bazaTabela_jedn[count], Convert.ToString(bazaTabela_cena[count]).Replace(".",",")));
                     count++;
                 } while (count < lista2.Length);
-            }             tabela.DataSource = DataSource;             tabela.Delegate = new ProductTableDelegate(DataSource);          }          public static void RefreshTable2(string[] lista, NSTableView tabela)         {              var DataSource = new ProductTableDataSource();             if (lista.Length == 0)             {                 DataSource.Products.Add(new Product("", "", ""));             }             else             {                 int count = 0;                 do                 {                     DataSource.Products.Add(new Product(lista[count], "", ""));                     count++;                 } while (count < lista.Length);             }             tabela.DataSource = DataSource;             tabela.Delegate = new ProductTableDelegate(DataSource);          }          public static void RefreshTable5(string[] lista, string[] data, NSTableView tabela)         {              var DataSource = new ProductTableDataSource_Tab5();             if (lista.Length == 0)             {                 DataSource.Products.Add(new Product_Tab5("", ""));             }             else             {                 int count = 0;                 do                 {                     DataSource.Products.Add(new Product_Tab5(lista[count], data[count]));                     count++;                 } while (count < lista.Length);             }             tabela.DataSource = DataSource;             tabela.Delegate = new ProductTableDelegate_Tab5(DataSource);          }               public static void RefreshComboBox(string[] lista, NSComboBox comboBox)         {             List<string> eldo = new List<string>(lista);             comboBox.UsesDataSource = true;             comboBox.DataSource = new BloomTypesDataSource(eldo);          }          public static string[] CreateReadyElement(string[] bazaTabela, string[] bazaTabela_x, string[] bazaTabela_y)
+            }             tabela.DataSource = DataSource;             tabela.Delegate = new ProductTableDelegate(DataSource);          }          public static void LieferungskostenFix(NSTextField lieferung)
+        {
+            //aktualizacja- lieferungskosten jest w osobnym polu a w tabeli byl na koncu wiec wywalam ostatnie miejsce i przenosze
+            if (MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1].Split(" ")[0] == "Lieferungskosten")
+            {
+                lieferung.FloatValue = MainClass.bazaTabela1_cena[MainClass.bazaTabela1_cena.Length - 1];
+
+                Array.Resize(ref MainClass.bazaTabela1, MainClass.bazaTabela1.Length - 1);
+                Array.Resize(ref MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_ilosc.Length - 1);
+                Array.Resize(ref MainClass.bazaTabela1_cena, MainClass.bazaTabela1_cena.Length - 1);
+                Array.Resize(ref MainClass.bazaTabela1_x, MainClass.bazaTabela1_x.Length - 1);
+                Array.Resize(ref MainClass.bazaTabela1_y, MainClass.bazaTabela1_y.Length - 1);
+                Array.Resize(ref MainClass.bazaTabela1_jedn, MainClass.bazaTabela1_jedn.Length - 1);
+            }
+        }          public static void LieferungskostenFixBack(NSTextField lieferung)
+        {             if (MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1].Split(" ")[0] != "Lieferungskosten")
+            {
+                Array.Resize(ref MainClass.bazaTabela1, MainClass.bazaTabela1.Length + 1);
+                Array.Resize(ref MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_ilosc.Length + 1);
+                Array.Resize(ref MainClass.bazaTabela1_cena, MainClass.bazaTabela1_cena.Length + 1);
+                Array.Resize(ref MainClass.bazaTabela1_x, MainClass.bazaTabela1_x.Length + 1);
+                Array.Resize(ref MainClass.bazaTabela1_y, MainClass.bazaTabela1_y.Length + 1);
+                Array.Resize(ref MainClass.bazaTabela1_jedn, MainClass.bazaTabela1_jedn.Length + 1);
+
+                MainClass.bazaTabela1[MainClass.bazaTabela1.Length - 1] = "Lieferungskosten";
+                MainClass.bazaTabela1_ilosc[MainClass.bazaTabela1_ilosc.Length - 1] = 1;
+                MainClass.bazaTabela1_cena[MainClass.bazaTabela1_cena.Length - 1] = lieferung.FloatValue;
+                MainClass.bazaTabela1_x[MainClass.bazaTabela1_x.Length - 1] = "0";
+                MainClass.bazaTabela1_y[MainClass.bazaTabela1_y.Length - 1] = "0";
+                MainClass.bazaTabela1_jedn[MainClass.bazaTabela1_jedn.Length - 1] = "Stk.";
+            }
+        }          public static void RefreshTable2(string[] lista, NSTableView tabela)         {              var DataSource = new ProductTableDataSource();             if (lista.Length == 0)             {                 DataSource.Products.Add(new Product("", "", ""));             }             else             {                 int count = 0;                 do                 {                     DataSource.Products.Add(new Product(lista[count], "", ""));                     count++;                 } while (count < lista.Length);             }             tabela.DataSource = DataSource;             tabela.Delegate = new ProductTableDelegate(DataSource);          }          public static void RefreshTable5(string[] lista, string[] data, NSTableView tabela)         {              var DataSource = new ProductTableDataSource_Tab5();             if (lista.Length == 0)             {                 DataSource.Products.Add(new Product_Tab5("", ""));             }             else             {                 int count = 0;                 do                 {                     DataSource.Products.Add(new Product_Tab5(lista[count], data[count]));                     count++;                 } while (count < lista.Length);             }             tabela.DataSource = DataSource;             tabela.Delegate = new ProductTableDelegate_Tab5(DataSource);          }               public static void RefreshComboBox(string[] lista, NSComboBox comboBox)         {             List<string> eldo = new List<string>(lista);             comboBox.UsesDataSource = true;             comboBox.DataSource = new BloomTypesDataSource(eldo);          }          public static string[] CreateReadyElement(string[] bazaTabela, string[] bazaTabela_x, string[] bazaTabela_y)
         {
             string[] tabela = new string[bazaTabela.Length];             Array.Copy(bazaTabela, tabela, bazaTabela.Length);             if(bazaTabela.Length > 0)
             {
