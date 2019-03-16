@@ -1341,7 +1341,7 @@ namespace Oferta__
             {
                 phrase = new Phrase(new Chunk("Dacheindeckung und Giebeldreieck: ", standard_bold));
                 phrase.Add(new Chunk("doppelschalige PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + Technische[4] + " g/m², schwerentflammbar gemäß DIN4102/B1, K-Wert " + Technische[5] + " W/m²K, Druckregler mit Kompressor (1 Stk.).", standard));
-                phrase.Add(new Chunk("Farbton Weiß.", standard_bold));
+                phrase.Add(new Chunk(" Farbton Weiß.", standard_bold));
                 par = new Paragraph(phrase);
 
                 par.SpacingAfter = -4f;
@@ -1353,6 +1353,8 @@ namespace Oferta__
                 par.SpacingAfter = 0f;
                 par.Alignment = 0;
                 doc.Add(par);
+
+
             }
             else if(Select3 == 1)
             {
@@ -1377,24 +1379,35 @@ namespace Oferta__
 
 
             /*
-            if(typ[1].Substring(0,3) == "DPS")
+            if(typ[1].Substring(0, 3) == "DPS")
             {
                 phrase = new Phrase(new Chunk("Wandverkleidung: ", standard_bold));
                 phrase.Add(new Chunk("Sandwichpaneelen, ", standard));
-                phrase.Add(new Chunk("Stärke 40mm, ", standard_bold));
+                phrase.Add(new Chunk("Stärke " + Technische[2] + " mm, ", standard_bold));
                 phrase.Add(new Chunk("chwerentflammbar nach DIN 4102 Baustoffklasse 1, ", standard));
                 phrase.Add(new Chunk("U-Wert (W/m²K) = " + Technische[3] + ". ", standard_bold));
                 phrase.Add(new Chunk("Die Paneelen bestehen aus einem Kern aus Hartschaum zwischen verzinkten und kunststoffbeschichtetem Stahlblech- Deckschalen, mit sichtbarer Befestigung. Die Verkleidung schließt mit einem Abschluss aus Kantblechen am Boden ab.", standard));
                 par = new Paragraph(phrase);
+
+                par.SpacingAfter = -4f;
+                par.SetLeading(10f, 0f);
+                par.Alignment = 0;
+                doc.Add(par);
+
+                par = new Paragraph(new Phrase(" ", standard));
+                par.SpacingAfter = 0f;
+                par.Alignment = 0;
+                doc.Add(par);
             }
+
             else if (typ[1].Substring(0,3) == "ISO")
             {
                 phrase = new Phrase(new Chunk("Wandverkleidung: ", standard_bold));
                 phrase.Add(new Chunk("Sandwichpaneelen, ", standard));
-                phrase.Add(new Chunk("Stärke " + Technische[2] + "mm, ", standard_bold));
+                phrase.Add(new Chunk("Stärke " + Technische[2] + " mm, ", standard_bold));
                 phrase.Add(new Chunk("chwerentflammbar nach DIN 4102 Baustoffklasse 1, ", standard));
                 phrase.Add(new Chunk("U-Wert (W/m²K) = " + Technische[3] + ". ", standard_bold));
-                phrase.Add(new Chunk("Die Panellen bestehen aus einem Kern aus Hartschaum zwischen verzinkten und kunststoffbeschichtetem Syahlblech- Deckschalen, mit sichtbarer Befestigung. Die Verkleidung schließt mit einem Abschluss aus Kantblechen am Boden ab.", standard));
+                phrase.Add(new Chunk("Die Panellen bestehen aus einem Kern aus Hartschaum zwischen verzinkten und kunststoffbeschichtetem Stahlblech- Deckschalen, mit sichtbarer Befestigung. Die Verkleidung schließt mit einem Abschluss aus Kantblechen am Boden ab.", standard));
                 par = new Paragraph(phrase);
             }
             else
@@ -1437,11 +1450,31 @@ namespace Oferta__
                 par.Alignment = 0;
                 doc.Add(par);
             }
+            else if(typ[1].Substring(0, 3) == "DPS")
+            {
+                phrase = new Phrase(new Chunk("Wandverkleidung: ", standard_bold));
+                phrase.Add(new Chunk("Sandwichpaneelen (profiliert), ", standard));
+                phrase.Add(new Chunk("Stärke " + Technische[2] + " mm, ", standard_bold));
+                phrase.Add(new Chunk("schwerentflammbar nach DIN 4102 Baustoffklasse 1, ", standard));
+                phrase.Add(new Chunk("U-Wert (W/m²K) = " + Technische[3] + ". ", standard_bold));
+                phrase.Add(new Chunk("Die Panellen bestehen aus einem Kern aus Hartschaum zwischen verzinkten und kunststoffbeschichtetem Stahlblech- Deckschalen. Die Verkleidung schließt mit einem Abschluss aus Kantblechen + Dichtband am Boden ab.", standard));
+                par = new Paragraph(phrase);
+
+                par.SpacingAfter = -4f;
+                par.SetLeading(10f, 0f);
+                par.Alignment = 0;
+                doc.Add(par);
+
+                par = new Paragraph(new Phrase(" ", standard));
+                par.SpacingAfter = 0f;
+                par.Alignment = 0;
+                doc.Add(par);
+            }
             else if(Select3 == 1)
             {
                 phrase = new Phrase(new Chunk("Wandverkleidung: ", standard_bold));
                 phrase.Add(new Chunk("Sandwichpaneelen (profiliert), ", standard));
-                phrase.Add(new Chunk("Stärke " + Technische[2] + "mm, ", standard_bold));
+                phrase.Add(new Chunk("Stärke " + Technische[2] + " mm, ", standard_bold));
                 phrase.Add(new Chunk("schwerentflammbar nach DIN 4102 Baustoffklasse 1, ", standard));
                 phrase.Add(new Chunk("U-Wert (W/m²K) = " + Technische[3] + ". ", standard_bold));
                 phrase.Add(new Chunk("Die Panellen bestehen aus einem Kern aus Hartschaum zwischen verzinkten und kunststoffbeschichtetem Stahlblech- Deckschalen. Die Verkleidung schließt mit einem Abschluss aus Kantblechen + Dichtband am Boden ab.", standard));
