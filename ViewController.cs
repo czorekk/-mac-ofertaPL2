@@ -16,6 +16,8 @@ using System.Linq;
 
 using AppKit;
 using Foundation;
+using CoreGraphics;
+using System.Threading.Tasks;
 
 namespace Oferta__
 {
@@ -33,6 +35,8 @@ namespace Oferta__
         {
             base.ViewDidLoad();
 
+            //AppSecure.Verify();
+            //GenerateAlert("test", "test");
             // Do any additional setup after loading the view.
             //LabelTest1.StringValue = Assembly.GetEntryAssembly().Location;
             ChechFiles(SearchTextField.StringValue);
@@ -43,9 +47,12 @@ namespace Oferta__
             //DateTime data = DateTime.ParseExact("2019-01-22", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             //Console.WriteLine((int)data.DayOfWeek);
             //LabelTest2.StringValue = System.IO.Directory.GetCurrentDirectory();
+            //Console.WriteLine(MacUUID());
 
             //trigger na pisanie w szukaniu pliku
             SearchTextField.Changed += SearchTextField_Changed;
+            //AppSecure.Verify();
+            
         }
 
         public override NSObject RepresentedObject
@@ -343,6 +350,7 @@ namespace Oferta__
 
         partial void MailCreateButton_Click(NSObject sender)
         {
+            /*
             //wstep
             string str = "Sehr geehrter ";
             if(Plec.SelectedSegment == 0)
@@ -416,10 +424,19 @@ namespace Oferta__
             NSPasteboard clipboard = NSPasteboard.GeneralPasteboard;
             clipboard.ClearContents();
             clipboard.WriteObjects(new NSString[] { (NSString)str });
+            */
 
+            Mailing.CreateMail1(Plec, Name, Switch3, Mail_mm, Leichbauhalle, Breite, Lange2, Traufhohe, Mail_miasto, Schneelast, Schneelast2, Windlast, Windlast2, NHN, Mail_cena);
             InfoLabel1.StringValue = "Mail został skopiowany.";
             Save();
 
+        }
+
+        partial void MailCreateButton2_Click(NSObject sender)
+        {
+            Mailing.CreateMail2(Plec, Name, Leichbauhalle, Czas((DateTime)DataOferty.DateValue).ToString("dd.MM.yyyy"));
+            InfoLabel1.StringValue = "Mail został skopiowany.";
+            Save();
         }
 
         partial void DefaultButton_Click(NSObject sender)

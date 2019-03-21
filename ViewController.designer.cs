@@ -435,6 +435,9 @@ namespace Oferta__
 		[Action ("MailCreateButton_Click:")]
 		partial void MailCreateButton_Click (Foundation.NSObject sender);
 
+		[Action ("MailCreateButton2_Click:")]
+		partial void MailCreateButton2_Click (Foundation.NSObject sender);
+
 		[Action ("OpenButton1_Click:")]
 		partial void OpenButton1_Click (Foundation.NSObject sender);
 
@@ -632,11 +635,6 @@ namespace Oferta__
 				Down1 = null;
 			}
 
-			if (SearchTextField != null) {
-				SearchTextField.Dispose ();
-				SearchTextField = null;
-			}
-
 			if (Down2 != null) {
 				Down2.Dispose ();
 				Down2 = null;
@@ -645,11 +643,6 @@ namespace Oferta__
 			if (Down3 != null) {
 				Down3.Dispose ();
 				Down3 = null;
-			}
-
-			if (Lieferungskosten != null) {
-				Lieferungskosten.Dispose ();
-				Lieferungskosten = null;
 			}
 
 			if (Firma != null) {
@@ -767,6 +760,11 @@ namespace Oferta__
 				Liefertermin = null;
 			}
 
+			if (Lieferungskosten != null) {
+				Lieferungskosten.Dispose ();
+				Lieferungskosten = null;
+			}
+
 			if (Lieferzeit != null) {
 				Lieferzeit.Dispose ();
 				Lieferzeit = null;
@@ -865,6 +863,11 @@ namespace Oferta__
 			if (Schneelast2 != null) {
 				Schneelast2.Dispose ();
 				Schneelast2 = null;
+			}
+
+			if (SearchTextField != null) {
+				SearchTextField.Dispose ();
+				SearchTextField = null;
 			}
 
 			if (Select2 != null) {
