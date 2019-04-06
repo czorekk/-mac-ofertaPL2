@@ -57,14 +57,18 @@ namespace Oferta__
             string windzone = String.Format("{0:0.00}", Convert.ToDouble(Windlast.StringValue.Replace(",", "."))).Replace(".", ",");
             str += "Die angebotene Halle ist mit " + schneelast + "kN/m2 (" + Schneelast.StringValue.Replace(",", "").Replace("0", "") + " kg/m2) Schneelast berechnet, was die Zone " + Schneelast2.StringValue;
             str += " für " + Mail_miasto.StringValue + " entspricht (bitte siehe Anhang). Die Windzone " + Windlast2.StringValue + "mit Basisgeschwindigkeitsdruck " + windzone + " kN/m2, ";
-            if (Schneelast2.StringValue.Substring(Schneelast2.StringValue.Length - 1, 1) == "*")
+            if(Schneelast2.StringValue.Length > 0)
             {
-                str += "der Sicherheitsfaktor 2,3 für Norddeutsches Tiefland, und die Höhe von " + NHN.StringValue + " m ü. NHN, wurden bei der Berechnung der Konstruktion berücksichtigt. Die Halle ist für die dauerhafte Aufstellung in der Norddeutschen Tiefebene geeignet.";
+                if (Schneelast2.StringValue.Substring(Schneelast2.StringValue.Length - 1, 1) == "*")
+                {
+                    str += "der Sicherheitsfaktor 2,3 für Norddeutsches Tiefland, und die Höhe von " + NHN.StringValue + " m ü. NHN, wurden bei der Berechnung der Konstruktion berücksichtigt. Die Halle ist für die dauerhafte Aufstellung in der Norddeutschen Tiefebene geeignet.";
+                }
+                else
+                {
+                    str += "und die Höhe von " + NHN.StringValue + " m ü. NHN, wurden bei der Berechnung der Konstruktion berücksichtigt. Die Halle ist für die dauerhafte Aufstellung geeignet.";
+                }
             }
-            else
-            {
-                str += "und die Höhe von " + NHN.StringValue + " m ü. NHN, wurden bei der Berechnung der Konstruktion berücksichtigt. Die Halle ist für die dauerhafte Aufstellung geeignet.";
-            }
+
 
             //trzeci akapit
             str += "\n \n";
