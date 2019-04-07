@@ -121,6 +121,79 @@ namespace Oferta__
             AllManager.RefreshComboBox(Raport.CheckDates2(), ComboBoxRaport);
         }
 
+        partial void AddWindowsButton1_Click(NSObject sender)
+        {
+            //dodaje do 2tabeli wyposazenia kilka elementow (w tym przypadku okna)
+
+            //PVC- Fenster 0,50 x 0,50 mm (B x H) mit Dreh-Kipp-Funktion /1 Stk. /195,00 €
+            AllManager.MoveValueFromComboBoxToTable(MainClass.bazaTabela2, 
+                                                    MainClass.bazaTabela2_ilosc, 
+                                                    MainClass.bazaTabela2_cena, 
+                                                    MainClass.bazaTabela2_x, 
+                                                    MainClass.bazaTabela2_y, 
+                                                    MainClass.bazaTabela2_jedn, 
+                                                    MainClass.bazaComboBox1, 
+                                                    Tabela2,
+                                                    "PVC- Fenster 00x00 mm (B x H) mit Dreh-Kipp-Funktion", 
+                                                    1, 
+                                                    195f, 
+                                                    "0.5", 
+                                                    "0.5", 
+                                                    "Stk.", 
+                                                    2);
+
+            //PVC- Fenster 1,00 x 1,10 mm (B x H) mit Dreh-Kipp-Funktion /1 Stk. /295,00 €
+            AllManager.MoveValueFromComboBoxToTable(MainClass.bazaTabela2,
+                                                    MainClass.bazaTabela2_ilosc,
+                                                    MainClass.bazaTabela2_cena,
+                                                    MainClass.bazaTabela2_x,
+                                                    MainClass.bazaTabela2_y,
+                                                    MainClass.bazaTabela2_jedn,
+                                                    MainClass.bazaComboBox1,
+                                                    Tabela2,
+                                                    "PVC- Fenster 00x00 mm (B x H) mit Dreh-Kipp-Funktion",
+                                                    1,
+                                                    295f,
+                                                    "1",
+                                                    "1.1",
+                                                    "Stk.",
+                                                    2);
+
+            //PVC- Fenster doppelflügelig 1,45 x 1,10 mm (B x H) – ein Flügel mit Dreh-Kipp-Funktion /1 Stk. /365,00 €
+            AllManager.MoveValueFromComboBoxToTable(MainClass.bazaTabela2,
+                                                    MainClass.bazaTabela2_ilosc,
+                                                    MainClass.bazaTabela2_cena,
+                                                    MainClass.bazaTabela2_x,
+                                                    MainClass.bazaTabela2_y,
+                                                    MainClass.bazaTabela2_jedn,
+                                                    MainClass.bazaComboBox1,
+                                                    Tabela2,
+                                                    "PVC- Fenster doppelflügelig 00x00 mm (B x H) – ein Flügel mit Dreh-Kipp-Funktion",
+                                                    1,
+                                                    365f,
+                                                    "1.45",
+                                                    "1.1",
+                                                    "Stk.",
+                                                    2);
+
+            //PVC- Fenster mit Sprosse 2,00 x 1,00 m (B x H) mit Kippfunktion /1 Stk. /345,00 €
+            AllManager.MoveValueFromComboBoxToTable(MainClass.bazaTabela2,
+                                                    MainClass.bazaTabela2_ilosc,
+                                                    MainClass.bazaTabela2_cena,
+                                                    MainClass.bazaTabela2_x,
+                                                    MainClass.bazaTabela2_y,
+                                                    MainClass.bazaTabela2_jedn,
+                                                    MainClass.bazaComboBox1,
+                                                    Tabela2,
+                                                    "PVC- Fenster mit Sprosse 00x00 m (B x H) mit Kippfunktion",
+                                                    1,
+                                                    345f,
+                                                    "2",
+                                                    "1",
+                                                    "Stk.",
+                                                    2);
+        }
+
         public void SetPersonaldaten()
         {
             //Console.WriteLine(Vorname.StringValue);
@@ -1856,9 +1929,12 @@ namespace Oferta__
             Array.Reverse(lista);
 
             //wywalenie .DS_Store
-            if (lista[lista.Length - 1] == ".DS_Store")
+            if(lista.Length > 0)
             {
-                Array.Resize(ref lista, lista.Length - 1);
+                if (lista[lista.Length - 1] == ".DS_Store")
+                {
+                    Array.Resize(ref lista, lista.Length - 1);
+                }
             }
 
 
@@ -2183,6 +2259,7 @@ namespace Oferta__
 
             Suma1.StringValue = AllManager.PoliczSume(MainClass.bazaTabela1_ilosc, MainClass.bazaTabela1_cena, Lieferungskosten.FloatValue);
 
+                //fix przesuniecia linii 
                 if(dane[50].Length > 0)
                 {
                     if (dane[50].Substring(0, 1) == "-")

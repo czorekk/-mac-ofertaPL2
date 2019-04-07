@@ -380,7 +380,16 @@ namespace Oferta__
             par = new Paragraph(phrase);
             doc.Add(par);
 
-            table = new PdfPTable(7);
+            table = new PdfPTable(9);
+
+            //nowe
+            cell = new PdfPCell(new Phrase("Lp.", standard_bold));
+            cell.HorizontalAlignment = 1;
+            cell.UseAscender = true;
+            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            cell.Rowspan = 2;
+            table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("Numer oferty", standard_bold));
             cell.HorizontalAlignment = 1;
@@ -391,6 +400,15 @@ namespace Oferta__
             table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("Klient", standard_bold));
+            cell.HorizontalAlignment = 1;
+            cell.UseAscender = true;
+            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            cell.Rowspan = 2;
+            table.AddCell(cell);
+
+            //nowe
+            cell = new PdfPCell(new Phrase("E-mail", standard_bold));
             cell.HorizontalAlignment = 1;
             cell.UseAscender = true;
             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -441,6 +459,12 @@ namespace Oferta__
             int count = 0;
             do
             {
+                cell = new PdfPCell(new Phrase(Convert.ToString(count + 1), standard));
+                cell.HorizontalAlignment = 1;
+                cell.UseAscender = true;
+                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                table.AddCell(cell);
+
                 string[] dane = File.ReadAllLines(pliki[count]);
 
                 cell = new PdfPCell(new Phrase(dane[0], standard));
@@ -455,12 +479,44 @@ namespace Oferta__
                 cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 table.AddCell(cell);
 
+                //fix przesuniecia linii (robie 2x bo tutaj jest wartosc ponizej 50 a nizej sa znowu wyzej wiec tutaj nie moge zmienic tablicy)
+                if (dane[50].Length > 0)
+                {
+                    if (dane[50].Substring(0, 1) == "-")
+                    {
+                        cell = new PdfPCell(new Phrase(dane[69], standard));
+                        cell.HorizontalAlignment = 1;
+                        cell.UseAscender = true;
+                        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        table.AddCell(cell);
+                    }
+                    else
+                    {
+                        cell = new PdfPCell(new Phrase(dane[68], standard));
+                        cell.HorizontalAlignment = 1;
+                        cell.UseAscender = true;
+                        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        table.AddCell(cell);
+                    }
+                }
+                else
+                {
+                    cell = new PdfPCell(new Phrase(dane[68], standard));
+                    cell.HorizontalAlignment = 1;
+                    cell.UseAscender = true;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                }
+
                 //cell = new PdfPCell(new Phrase(dane[10] + " " + pliki[count].Split("_")[1], standard)); //to u mnie nie dziala bo mam wiecej '_' w sciezce
                 cell = new PdfPCell(new Phrase(dane[10] + " " + dane[13] + "x" + dane[16] + "x" + dane[19] + "m", standard)); //teraz pobiera z danych a nie z nazwy XD
                 cell.HorizontalAlignment = 0;
                 cell.UseAscender = true;
                 cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 table.AddCell(cell);
+
+
+
 
 
                 int[] bazaTabela1_ilosc = new int[0];
@@ -477,10 +533,22 @@ namespace Oferta__
                 cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 table.AddCell(cell);
 
-                if(dane[51] == "")
+                //fix przesuniecia linii (przesuwam tablice bo juz nie ma wyzszych wartosci)
+                if (dane[50].Length > 0)
+                {
+                    if (dane[50].Substring(0, 1) == "-")
+                    {
+                        Array.Reverse(dane);
+                        Array.Resize(ref dane, dane.Length - 1);
+                        Array.Reverse(dane);
+                    }
+                }
+
+                if (dane[51] == "")
                 {
                     dane[51] = "0";
                 }
+                Console.WriteLine(pliki[count]);
                 cell = new PdfPCell(new Phrase(String.Format("{0:0.00}", Convert.ToDouble(dane[51].Replace(",", "."))).Replace(".", ",") + " €", standard));
                 cell.HorizontalAlignment = 2;
                 cell.UseAscender = true;
@@ -527,7 +595,7 @@ namespace Oferta__
             table.TotalWidth = doc.Right - doc.Left;
             table.LockedWidth = true;
 
-            table.SetWidths(new float[] { 2f, 2f, 3f, 1.5f, 1.5f, 2f, 3f });
+            table.SetWidths(new float[] { 0.5f, 2f, 2f, 2f, 3f, 1.5f, 1.5f, 2f, 3f });
 
 
 
@@ -544,6 +612,33 @@ namespace Oferta__
             writer.Close();
 
             fs.Close();
+
+
+            //dodanie numeracji do pdf
+            byte[] bytes = File.ReadAllBytes(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", nazwa1.Replace("/", ".") + ".pdf")));
+            Font blackFont = FontFactory.GetFont("Arial", 12, Font.NORMAL, BaseColor.BLACK);
+            using (MemoryStream stream = new MemoryStream())
+            {
+                PdfReader reader = new PdfReader(bytes);
+                using (PdfStamper stamper = new PdfStamper(reader, stream))
+                {
+                    int pages = reader.NumberOfPages;
+                    for (int i = 1; i <= pages; i++)
+                    {
+                        if(i == 1)
+                        {
+                            ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase("Strona: " + i.ToString() + " / " + pages.ToString(), blackFont), 800f, 15f, 0);
+                        }
+                        else
+                        {
+                            ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(nazwa1 + " Strona: " + i.ToString() + " / " + pages.ToString(), blackFont), 800f, 15f, 0);
+                        }
+
+                    }
+                }
+                bytes = stream.ToArray();
+            }
+            File.WriteAllBytes(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", nazwa1.Replace("/", ".") + ".pdf")), bytes);
         }
 
 

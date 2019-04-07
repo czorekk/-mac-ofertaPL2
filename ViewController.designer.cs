@@ -387,6 +387,9 @@ namespace Oferta__
 		[Action ("AddButton5_Click:")]
 		partial void AddButton5_Click (Foundation.NSObject sender);
 
+		[Action ("AddWindowsButton1_Click:")]
+		partial void AddWindowsButton1_Click (Foundation.NSObject sender);
+
 		[Action ("ArchiveButton1_Click:")]
 		partial void ArchiveButton1_Click (Foundation.NSObject sender);
 
