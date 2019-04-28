@@ -1434,6 +1434,22 @@ namespace Oferta__
                 par.Alignment = 0;
                 doc.Add(par);
             }
+            else if (typ[1].Substring(0, 2) == "PP")
+            {
+                phrase = new Phrase(new Chunk("Wandverkleidung ", standard_bold));
+                phrase.Add(new Chunk("bestehend aus waagerecht (evtl. senkrecht) verlegten, verzinkten und kunststoffbeschichteten Stahl-Trapezblechen T35 / T18, Stärke " + Technische[2] + " mm.", standard));
+                par = new Paragraph(phrase);
+
+                par.SpacingAfter = -4f;
+                par.SetLeading(10f, 0f);
+                par.Alignment = 0;
+                doc.Add(par);
+
+                par = new Paragraph(new Phrase(" ", standard));
+                par.SpacingAfter = 0f;
+                par.Alignment = 0;
+                doc.Add(par);
+            }
             else if (typ[1].Substring(0, 2) == "TT")
             {
                 phrase = new Phrase(new Chunk("Wandverkleidung ", standard_bold));
