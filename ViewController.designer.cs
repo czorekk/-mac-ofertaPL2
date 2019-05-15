@@ -115,6 +115,9 @@ namespace Oferta__
 		AppKit.NSButton FirsthoheN { get; set; }
 
 		[Outlet]
+		AppKit.NSTextField Gesamtpreis { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField Gewicht { get; set; }
 
 		[Outlet]
@@ -392,6 +395,9 @@ namespace Oferta__
 
 		[Action ("ArchiveButton1_Click:")]
 		partial void ArchiveButton1_Click (Foundation.NSObject sender);
+
+		[Action ("BestellungsformularButton_Click:")]
+		partial void BestellungsformularButton_Click (Foundation.NSObject sender);
 
 		[Action ("ButtonNew1_Click:")]
 		partial void ButtonNew1_Click (Foundation.NSObject sender);
@@ -756,6 +762,11 @@ namespace Oferta__
 			if (Leichbauhalle != null) {
 				Leichbauhalle.Dispose ();
 				Leichbauhalle = null;
+			}
+
+			if (Gesamtpreis != null) {
+				Gesamtpreis.Dispose ();
+				Gesamtpreis = null;
 			}
 
 			if (Liefertermin != null) {

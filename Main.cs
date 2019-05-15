@@ -96,6 +96,8 @@ namespace Oferta__
         public static string nrzam = "";
         public static string liefer = "";
 
+        public static string Gesamtpreis = "";
+
         public static DateTime dataoferty;
         public static DateTime datapotwierdzenia;
 
@@ -284,8 +286,12 @@ namespace Oferta__
 
 
 
-
-            par = new Paragraph(new Phrase("Sehr geehrter " + Personaldaten[7] + " " + Personaldaten[1] + ",", standard));
+            string tytul = "geehrter";
+            if(Personaldaten[7] == "Frau")
+            {
+                tytul = "geehrte";
+            }
+            par = new Paragraph(new Phrase("Sehr " + tytul + " " + Personaldaten[7] + " " + Personaldaten[1] + ",", standard));
             par.SpacingAfter = -2f;
             doc.Add(par);
             par = new Paragraph(new Phrase("wir bedanken uns für Ihre Anfrage und bieten Ihnen freibleibend eine " + Halledaten[0] + " wie folgt an:\n ", standard));

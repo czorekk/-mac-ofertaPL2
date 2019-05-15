@@ -104,6 +104,7 @@
     </Compile>
     <Compile Include="Mailing.cs" />
     <Compile Include="AppSecure.cs" />
+    <Compile Include="Bestellungsformullar.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
