@@ -96,7 +96,10 @@ namespace Oferta__
         public static string nrzam = "";
         public static string liefer = "";
 
+        //Bestellungsformular
         public static double Gesamtpreis = 0;
+        public static int AusstattungOd = 0;
+        public static int AusstattungDo = 0;
 
         public static DateTime dataoferty;
         public static DateTime datapotwierdzenia;

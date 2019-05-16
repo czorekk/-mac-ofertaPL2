@@ -215,7 +215,10 @@ namespace Oferta__
             doc.Add(par);
 
             phrase = new Phrase(new Chunk("Hallengröße (B x L x H): ", standard_bold));
-            phrase.Add(new Chunk("..................................................................", standard));
+            phrase.Add(new Chunk(
+                String.Format("{0:0.00}", Convert.ToDouble(MainClass.Halledaten[1].Replace(",","."))).Replace(".", ",") + " x " +
+                String.Format("{0:0.00}", Convert.ToDouble(MainClass.Halledaten[2].Replace(",", "."))).Replace(".", ",") + " x " +
+                String.Format("{0:0.00}", Convert.ToDouble(MainClass.Halledaten[3].Replace(",", "."))).Replace(".", ",") + " m", standard));
             par = new Paragraph(phrase);
             par.SpacingAfter = -4f;
             par.SetLeading(10f, 0f);
@@ -231,14 +234,14 @@ namespace Oferta__
             string windzone = MainClass.Halledaten[10];
             if(MainClass.Halledaten2[8].Length > 0)
             {
-                windzone = MainClass.Halledaten2[8] + " " + windzone;
+                windzone = MainClass.Halledaten2[8] + "- " + windzone;
             }
             string schneelast = MainClass.Halledaten[9];
             if(MainClass.Halledaten2[7].Length > 0)
             {
-                schneelast = MainClass.Halledaten2[7] + " " + schneelast;
+                schneelast = MainClass.Halledaten2[7] + "- " + schneelast;
             }
-            phrase.Add(new Chunk(MainClass.Halledaten2[7] + schneelast + " kN/m², Windzone " + windzone + " kN/m²", standard));
+            phrase.Add(new Chunk(schneelast + " kN/m², Windzone " + windzone + " kN/m²", standard));
             par = new Paragraph(phrase);
             par.SpacingAfter = -4f;
             par.SetLeading(10f, 0f);
@@ -556,25 +559,15 @@ namespace Oferta__
             phrase = new Phrase(new Chunk("Zusätliche Ausstattung:", standard_bold));
 
             string ausstattung = "";
-            //jesli nie ma wyposazenia dodatkowego to dodaj wykropkowane miejsce
-            if(MainClass.bazaTabela2.Length > 0)
+
+            string[] elm = AllManager.CreateReadyElement(MainClass.bazaTabela1, MainClass.bazaTabela1_x, MainClass.bazaTabela1_y);
+            for (int i = (MainClass.AusstattungOd - 1); i <= (MainClass.AusstattungDo - 1); i++)
             {
-                string[] elm = AllManager.CreateReadyElement(MainClass.bazaTabela2, MainClass.bazaTabela2_x, MainClass.bazaTabela2_y);
-                for (int i = 0; i < MainClass.bazaTabela2.Length; i++)
+                ausstattung = ausstattung + "\n-" + Convert.ToString(MainClass.bazaTabela1_ilosc[i]) + " " + MainClass.bazaTabela1_jedn[i] + " " + elm[i];
+                if (i < MainClass.AusstattungDo - 1)
                 {
-                    ausstattung = ausstattung + "\n-" + Convert.ToString(MainClass.bazaTabela2_ilosc[i]) + " " + MainClass.bazaTabela2_jedn[i] + " " + elm[i];
-                    if (i < MainClass.bazaTabela2.Length - 1)
-                    {
-                        ausstattung = ausstattung + ",";
-                    }
+                    ausstattung = ausstattung + ",";
                 }
-            }
-            else
-            {
-                ausstattung = "\n....................................................................................................." +
-                    "\n....................................................................................................." +
-                    "\n....................................................................................................." +
-                    "\n.....................................................................................................";
             }
 
             phrase.Add(new Chunk(ausstattung, standard));

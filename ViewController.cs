@@ -113,23 +113,32 @@ namespace Oferta__
         {
             if(Gesamtpreis.StringValue.Length > 0)
             {
-                MainClass.dataoferty = Czas((DateTime)DataOferty.DateValue);
-                MainClass.datapotwierdzenia = Czas((DateTime)DataPotwierdzenia.DateValue);
-                SetPersonaldaten();
-                SetHalledaten();
-                MainClass.TechnischeDaten = TechnischeDaten.StringValue;
-                MainClass.AufWunsch = AufWunsch.StringValue;
-                MainClass.Select2 = Convert.ToString(Select2.SelectedSegment);
-                MainClass.Stallhalle = Stallhalle.State.ToString();
-                MainClass.HauptGewicht = HauptProfilGewicht.StringValue;
-                string[] typ = MainClass.Halledaten[0].Split(" ");
-                SetTechDate(typ);
-                MainClass.Unterlagen = Unterlagen.StringValue;
+                if(AusstattungDo.IntValue <= MainClass.bazaTabela1.Length)
+                {
+                    MainClass.dataoferty = Czas((DateTime)DataOferty.DateValue);
+                    MainClass.datapotwierdzenia = Czas((DateTime)DataPotwierdzenia.DateValue);
+                    SetPersonaldaten();
+                    SetHalledaten();
+                    MainClass.TechnischeDaten = TechnischeDaten.StringValue;
+                    MainClass.AufWunsch = AufWunsch.StringValue;
+                    MainClass.Select2 = Convert.ToString(Select2.SelectedSegment);
+                    MainClass.Stallhalle = Stallhalle.State.ToString();
+                    MainClass.HauptGewicht = HauptProfilGewicht.StringValue;
+                    string[] typ = MainClass.Halledaten[0].Split(" ");
+                    SetTechDate(typ);
+                    MainClass.Unterlagen = Unterlagen.StringValue;
 
-                MainClass.Gesamtpreis = Gesamtpreis.DoubleValue;
-                Bestellungsformullar.CreatePDF();
-                Save();
-                InfoLabel1.StringValue = "PDF został stworzony.";
+                    MainClass.AusstattungOd = AusstattungOd.IntValue;
+                    MainClass.AusstattungDo = AusstattungDo.IntValue;
+                    MainClass.Gesamtpreis = Gesamtpreis.DoubleValue;
+                    Bestellungsformullar.CreatePDF();
+                    Save();
+                    InfoLabel1.StringValue = "PDF został stworzony.";
+                }
+                else
+                {
+                    GenerateAlert("Błąd", "Niepoprawny zakres z wyposażenia dla Ausstattung.");
+                }
             }
             else
             {
@@ -1917,6 +1926,8 @@ namespace Oferta__
 
             //aktualizacja Bestellungsformular
             dane[81] = Gesamtpreis.StringValue;
+            dane[82] = AusstattungOd.StringValue;
+            dane[83] = AusstattungDo.StringValue;
 
             int count = 0;
             string[] baza5 = new string[0];
@@ -2055,6 +2066,10 @@ namespace Oferta__
                     {
                         szerokosc = true;
                     }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
@@ -2066,7 +2081,11 @@ namespace Oferta__
                 {
                     if(dane[19] == SearchWysokosc.StringValue)
                     {
-                        szerokosc = true;
+                        wysokosc = true;
+                    }
+                    else
+                    {
+                        continue;
                     }
                 }
                 else
@@ -2081,6 +2100,10 @@ namespace Oferta__
                     {
                         dlugosc = true;
                     }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
@@ -2094,6 +2117,10 @@ namespace Oferta__
                     {
                         schneelast = true;
                     }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
@@ -2106,6 +2133,10 @@ namespace Oferta__
                     if(dane[36] == SearchWindlast.StringValue)
                     {
                         windlast = true;
+                    }
+                    else
+                    {
+                        continue;
                     }
                 }
                 else
@@ -2608,6 +2639,8 @@ namespace Oferta__
 
                 //aktualizacja Bestellungsformular
                 Gesamtpreis.StringValue = dane[81];
+                AusstattungOd.StringValue = dane[82];
+                AusstattungDo.StringValue = dane[83];
 
 
                 //zabezpieczenie przed starymi wersjami

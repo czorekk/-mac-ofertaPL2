@@ -25,6 +25,12 @@ namespace Oferta__
 		AppKit.NSTextField AufWunsch { get; set; }
 
 		[Outlet]
+		AppKit.NSTextField AusstattungDo { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField AusstattungOd { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField Bezeichnung { get; set; }
 
 		[Outlet]
@@ -539,6 +545,11 @@ namespace Oferta__
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (AdvancedSearchBox != null) {
+				AdvancedSearchBox.Dispose ();
+				AdvancedSearchBox = null;
+			}
+
 			if (AngebotNr != null) {
 				AngebotNr.Dispose ();
 				AngebotNr = null;
@@ -809,6 +820,16 @@ namespace Oferta__
 				Lieferungskosten = null;
 			}
 
+			if (AusstattungOd != null) {
+				AusstattungOd.Dispose ();
+				AusstattungOd = null;
+			}
+
+			if (AusstattungDo != null) {
+				AusstattungDo.Dispose ();
+				AusstattungDo = null;
+			}
+
 			if (Lieferzeit != null) {
 				Lieferzeit.Dispose ();
 				Lieferzeit = null;
@@ -909,9 +930,44 @@ namespace Oferta__
 				Schneelast2 = null;
 			}
 
+			if (SearchCheckBox != null) {
+				SearchCheckBox.Dispose ();
+				SearchCheckBox = null;
+			}
+
+			if (SearchDlugosc != null) {
+				SearchDlugosc.Dispose ();
+				SearchDlugosc = null;
+			}
+
+			if (SearchSchneelast != null) {
+				SearchSchneelast.Dispose ();
+				SearchSchneelast = null;
+			}
+
+			if (SearchSzerokosc != null) {
+				SearchSzerokosc.Dispose ();
+				SearchSzerokosc = null;
+			}
+
+			if (SearchText != null) {
+				SearchText.Dispose ();
+				SearchText = null;
+			}
+
 			if (SearchTextField != null) {
 				SearchTextField.Dispose ();
 				SearchTextField = null;
+			}
+
+			if (SearchWindlast != null) {
+				SearchWindlast.Dispose ();
+				SearchWindlast = null;
+			}
+
+			if (SearchWysokosc != null) {
+				SearchWysokosc.Dispose ();
+				SearchWysokosc = null;
 			}
 
 			if (Select2 != null) {
@@ -939,49 +995,9 @@ namespace Oferta__
 				Starke2 = null;
 			}
 
-			if (SearchCheckBox != null) {
-				SearchCheckBox.Dispose ();
-				SearchCheckBox = null;
-			}
-
-			if (SearchSzerokosc != null) {
-				SearchSzerokosc.Dispose ();
-				SearchSzerokosc = null;
-			}
-
-			if (SearchWysokosc != null) {
-				SearchWysokosc.Dispose ();
-				SearchWysokosc = null;
-			}
-
-			if (SearchDlugosc != null) {
-				SearchDlugosc.Dispose ();
-				SearchDlugosc = null;
-			}
-
-			if (SearchSchneelast != null) {
-				SearchSchneelast.Dispose ();
-				SearchSchneelast = null;
-			}
-
-			if (SearchWindlast != null) {
-				SearchWindlast.Dispose ();
-				SearchWindlast = null;
-			}
-
 			if (StraBe != null) {
 				StraBe.Dispose ();
 				StraBe = null;
-			}
-
-			if (AdvancedSearchBox != null) {
-				AdvancedSearchBox.Dispose ();
-				AdvancedSearchBox = null;
-			}
-
-			if (SearchText != null) {
-				SearchText.Dispose ();
-				SearchText = null;
 			}
 
 			if (Suma1 != null) {
