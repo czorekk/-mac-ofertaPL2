@@ -556,15 +556,27 @@ namespace Oferta__
             phrase = new Phrase(new Chunk("Zusätliche Ausstattung:", standard_bold));
 
             string ausstattung = "";
-            string[] elm = AllManager.CreateReadyElement(MainClass.bazaTabela2, MainClass.bazaTabela2_x, MainClass.bazaTabela2_y);
-            for (int i = 0; i < MainClass.bazaTabela2.Length; i++)
+            //jesli nie ma wyposazenia dodatkowego to dodaj wykropkowane miejsce
+            if(MainClass.bazaTabela2.Length > 0)
             {
-                ausstattung = ausstattung + "\n-" + Convert.ToString(MainClass.bazaTabela2_ilosc[i]) + " " + MainClass.bazaTabela2_jedn[i] + " " + elm[i];
-                if(i < MainClass.bazaTabela2.Length - 1)
+                string[] elm = AllManager.CreateReadyElement(MainClass.bazaTabela2, MainClass.bazaTabela2_x, MainClass.bazaTabela2_y);
+                for (int i = 0; i < MainClass.bazaTabela2.Length; i++)
                 {
-                    ausstattung = ausstattung + ",";
+                    ausstattung = ausstattung + "\n-" + Convert.ToString(MainClass.bazaTabela2_ilosc[i]) + " " + MainClass.bazaTabela2_jedn[i] + " " + elm[i];
+                    if (i < MainClass.bazaTabela2.Length - 1)
+                    {
+                        ausstattung = ausstattung + ",";
+                    }
                 }
             }
+            else
+            {
+                ausstattung = "\n....................................................................................................." +
+                    "\n....................................................................................................." +
+                    "\n....................................................................................................." +
+                    "\n.....................................................................................................";
+            }
+
             phrase.Add(new Chunk(ausstattung, standard));
             par = new Paragraph(phrase);
             par.SpacingAfter = -4f;

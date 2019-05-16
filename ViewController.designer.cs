@@ -13,6 +13,9 @@ namespace Oferta__
 	partial class ViewController
 	{
 		[Outlet]
+		AppKit.NSBox AdvancedSearchBox { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField AngebotNr { get; set; }
 
 		[Outlet]
@@ -235,7 +238,28 @@ namespace Oferta__
 		AppKit.NSTextField Schneelast2 { get; set; }
 
 		[Outlet]
+		AppKit.NSButton SearchCheckBox { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField SearchDlugosc { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField SearchSchneelast { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField SearchSzerokosc { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField SearchText { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField SearchTextField { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField SearchWindlast { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField SearchWysokosc { get; set; }
 
 		[Outlet]
 		AppKit.NSSegmentedControl Select2 { get; set; }
@@ -393,6 +417,9 @@ namespace Oferta__
 		[Action ("AddWindowsButton1_Click:")]
 		partial void AddWindowsButton1_Click (Foundation.NSObject sender);
 
+		[Action ("AdvancedSearchButton_Click:")]
+		partial void AdvancedSearchButton_Click (Foundation.NSObject sender);
+
 		[Action ("ArchiveButton1_Click:")]
 		partial void ArchiveButton1_Click (Foundation.NSObject sender);
 
@@ -464,6 +491,9 @@ namespace Oferta__
 
 		[Action ("SaveButton1_Click:")]
 		partial void SaveButton1_Click (Foundation.NSObject sender);
+
+		[Action ("SearchCheckBox_Click:")]
+		partial void SearchCheckBox_Click (Foundation.NSObject sender);
 
 		[Action ("SearchTextField_Action:")]
 		partial void SearchTextField_Action (Foundation.NSObject sender);
@@ -679,6 +709,11 @@ namespace Oferta__
 				FirsthoheN = null;
 			}
 
+			if (Gesamtpreis != null) {
+				Gesamtpreis.Dispose ();
+				Gesamtpreis = null;
+			}
+
 			if (Gewicht != null) {
 				Gewicht.Dispose ();
 				Gewicht = null;
@@ -762,11 +797,6 @@ namespace Oferta__
 			if (Leichbauhalle != null) {
 				Leichbauhalle.Dispose ();
 				Leichbauhalle = null;
-			}
-
-			if (Gesamtpreis != null) {
-				Gesamtpreis.Dispose ();
-				Gesamtpreis = null;
 			}
 
 			if (Liefertermin != null) {
@@ -909,9 +939,49 @@ namespace Oferta__
 				Starke2 = null;
 			}
 
+			if (SearchCheckBox != null) {
+				SearchCheckBox.Dispose ();
+				SearchCheckBox = null;
+			}
+
+			if (SearchSzerokosc != null) {
+				SearchSzerokosc.Dispose ();
+				SearchSzerokosc = null;
+			}
+
+			if (SearchWysokosc != null) {
+				SearchWysokosc.Dispose ();
+				SearchWysokosc = null;
+			}
+
+			if (SearchDlugosc != null) {
+				SearchDlugosc.Dispose ();
+				SearchDlugosc = null;
+			}
+
+			if (SearchSchneelast != null) {
+				SearchSchneelast.Dispose ();
+				SearchSchneelast = null;
+			}
+
+			if (SearchWindlast != null) {
+				SearchWindlast.Dispose ();
+				SearchWindlast = null;
+			}
+
 			if (StraBe != null) {
 				StraBe.Dispose ();
 				StraBe = null;
+			}
+
+			if (AdvancedSearchBox != null) {
+				AdvancedSearchBox.Dispose ();
+				AdvancedSearchBox = null;
+			}
+
+			if (SearchText != null) {
+				SearchText.Dispose ();
+				SearchText = null;
 			}
 
 			if (Suma1 != null) {

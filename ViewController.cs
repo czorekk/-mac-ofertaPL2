@@ -138,6 +138,22 @@ namespace Oferta__
 
         }
 
+        partial void SearchCheckBox_Click(NSObject sender)
+        {
+            if(Convert.ToString(SearchCheckBox.State) == "On")
+            {
+                SearchText.Hidden = true;
+                SearchTextField.Hidden = true;
+                AdvancedSearchBox.Hidden = false;
+            }
+            else
+            {
+                SearchText.Hidden = false;
+                SearchTextField.Hidden = false;
+                AdvancedSearchBox.Hidden = true;
+            }
+        }
+
         partial void GenerateRaport_Click(NSObject sender)
         {
             Raport.zakresdat = ComboBoxRaport.StringValue;
@@ -1968,6 +1984,158 @@ namespace Oferta__
                     Array.Resize(ref lista, lista.Length - 1);
                 }
             }
+
+
+            //ladowanie do tabeli
+            var DataSource = new ProductTableDataSource();
+            if (lista.Length == 0)
+            {
+                DataSource.Products.Add(new Product("", "", ""));
+            }
+            else
+            {
+                int count = 0;
+                do
+                {
+                    DataSource.Products.Add(new Product(lista[count], "", ""));
+                    count++;
+                } while (count < lista.Length);
+            }
+            ListaOferty.DataSource = DataSource;
+            ListaOferty.Delegate = new ProductTableDelegate(DataSource);
+        }
+
+        partial void AdvancedSearchButton_Click(NSObject sender)
+        {
+            CheckFiles2();
+        }
+
+        public void CheckFiles2()
+        {
+            //lista plikow
+            lista = Directory.GetFiles(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/"));
+            if (lista.Length > 0)
+            {
+                int count = 0;
+                do
+                {
+                    lista[count] = lista[count].Replace(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/"), "");
+                    lista[count] = lista[count].Replace(".txt", "");
+                    count++;
+                } while (count < lista.Length);
+            }
+
+            //wyszukiwanie plikow
+            string[] lista2 = lista;
+            lista = new string[0];
+
+            for (int i = 0; i < lista2.Length; i++)
+            {
+                /*
+                for (int j = 0; j < lista2[i].Length - text.Length; j++)
+                {
+                    if (lista2[i].Substring(j, text.Length) == text)
+                    {
+                        Array.Resize(ref lista, lista.Length + 1);
+                        lista[lista.Length - 1] = lista2[i];
+                        break;
+                    }
+                }
+                */
+                if(lista2[i] == ".DS_Store")
+                {
+                    continue;
+                }
+
+                string[] dane = File.ReadAllLines(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle/Oferta+.exe", "Projects/") + lista2[i] + ".txt");
+                bool szerokosc = false;
+                if(SearchSzerokosc.StringValue.Length > 0)
+                {
+                    if (dane[13] == SearchSzerokosc.StringValue)
+                    {
+                        szerokosc = true;
+                    }
+                }
+                else
+                {
+                    szerokosc = true;
+                }
+
+                bool wysokosc = false;
+                if(SearchWysokosc.StringValue.Length > 0)
+                {
+                    if(dane[19] == SearchWysokosc.StringValue)
+                    {
+                        szerokosc = true;
+                    }
+                }
+                else
+                {
+                    wysokosc = true;
+                }
+
+                bool dlugosc = false;
+                if(SearchDlugosc.StringValue.Length > 0)
+                {
+                    if(dane[16] == SearchDlugosc.StringValue)
+                    {
+                        dlugosc = true;
+                    }
+                }
+                else
+                {
+                    dlugosc = true;
+                }
+
+                bool schneelast = false;
+                if(SearchSchneelast.StringValue.Length > 0)
+                {
+                    if(dane[35] == SearchSchneelast.StringValue)
+                    {
+                        schneelast = true;
+                    }
+                }
+                else
+                {
+                    schneelast = true;
+                }
+
+                bool windlast = false;
+                if(SearchWindlast.StringValue.Length > 0)
+                {
+                    if(dane[36] == SearchWindlast.StringValue)
+                    {
+                        windlast = true;
+                    }
+                }
+                else
+                {
+                    windlast = true;
+                }
+
+                if(szerokosc == true && wysokosc == true && dlugosc == true && schneelast == true && windlast == true)
+                {
+                    Array.Resize(ref lista, lista.Length + 1);
+                    lista[lista.Length - 1] = lista2[i];
+                }
+
+
+
+
+            }
+
+            Array.Reverse(lista);
+
+            //wywalenie .DS_Store
+            /*
+            if (lista.Length > 0)
+            {
+                if (lista[lista.Length - 1] == ".DS_Store")
+                {
+                    Array.Resize(ref lista, lista.Length - 1);
+                }
+            }
+            */
 
 
             //ladowanie do tabeli
