@@ -96,7 +96,7 @@ namespace Oferta__
         public static string nrzam = "";
         public static string liefer = "";
 
-        public static string Gesamtpreis = "";
+        public static double Gesamtpreis = 0;
 
         public static DateTime dataoferty;
         public static DateTime datapotwierdzenia;

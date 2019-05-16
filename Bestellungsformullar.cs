@@ -598,7 +598,9 @@ namespace Oferta__
             doc.Add(par);
 
             phrase = new Phrase(new Chunk("Gesamtpreis: ", standard_bold));
-            phrase.Add(new Chunk(String.Format("{0:0.00}", Convert.ToDouble(MainClass.Gesamtpreis.Replace(",","."))).Replace(".",",") + " € inkl. Liefer- und Montagekosten, zzgl. 19% MwSt.", standard));
+
+            string gesamtpreis = String.Format("{0:0.00}", Convert.ToDouble(MainClass.Gesamtpreis)).Replace(".", ",");
+            phrase.Add(new Chunk(gesamtpreis + " € inkl. Liefer- und Montagekosten, zzgl. 19% MwSt.", standard));
             par = new Paragraph(phrase);
             par.SpacingAfter = -4f;
             par.SetLeading(10f, 0f);

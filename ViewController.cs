@@ -111,23 +111,31 @@ namespace Oferta__
 
         partial void BestellungsformularButton_Click(NSObject sender)
         {
-            MainClass.dataoferty = Czas((DateTime)DataOferty.DateValue);
-            MainClass.datapotwierdzenia = Czas((DateTime)DataPotwierdzenia.DateValue);
-            SetPersonaldaten();
-            SetHalledaten();
-            MainClass.TechnischeDaten = TechnischeDaten.StringValue;
-            MainClass.AufWunsch = AufWunsch.StringValue;
-            MainClass.Select2 = Convert.ToString(Select2.SelectedSegment);
-            MainClass.Stallhalle = Stallhalle.State.ToString();
-            MainClass.HauptGewicht = HauptProfilGewicht.StringValue;
-            string[] typ = MainClass.Halledaten[0].Split(" ");
-            SetTechDate(typ);
-            MainClass.Unterlagen = Unterlagen.StringValue;
+            if(Gesamtpreis.StringValue.Length > 0)
+            {
+                MainClass.dataoferty = Czas((DateTime)DataOferty.DateValue);
+                MainClass.datapotwierdzenia = Czas((DateTime)DataPotwierdzenia.DateValue);
+                SetPersonaldaten();
+                SetHalledaten();
+                MainClass.TechnischeDaten = TechnischeDaten.StringValue;
+                MainClass.AufWunsch = AufWunsch.StringValue;
+                MainClass.Select2 = Convert.ToString(Select2.SelectedSegment);
+                MainClass.Stallhalle = Stallhalle.State.ToString();
+                MainClass.HauptGewicht = HauptProfilGewicht.StringValue;
+                string[] typ = MainClass.Halledaten[0].Split(" ");
+                SetTechDate(typ);
+                MainClass.Unterlagen = Unterlagen.StringValue;
 
-            MainClass.Gesamtpreis = Gesamtpreis.StringValue;
-            Bestellungsformullar.CreatePDF();
-            Save();
-            InfoLabel1.StringValue = "PDF został stworzony.";
+                MainClass.Gesamtpreis = Gesamtpreis.DoubleValue;
+                Bestellungsformullar.CreatePDF();
+                Save();
+                InfoLabel1.StringValue = "PDF został stworzony.";
+            }
+            else
+            {
+                GenerateAlert("Błąd", "Aby generować Bestellungsformular musisz podać Gesamtpreis.");
+            }
+
         }
 
         partial void GenerateRaport_Click(NSObject sender)
