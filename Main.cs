@@ -813,14 +813,21 @@ namespace Oferta__
             cell.Border = Rectangle.BOTTOM_BORDER;
             table.AddCell(cell);
 
-            if(CenaMontaz != "0")
+            if(MontageState == "On")
             {
-                suma = String.Format("{0:0.00}", Convert.ToDouble(CenaMontaz.Replace(",", "."))).Replace(".", ",");
-                cell = new PdfPCell(new Phrase(suma + " €", standard_lightblue));
+                cell = new PdfPCell(new Phrase("Ohne Montage", standard_lightblue));
             }
             else
             {
-                cell = new PdfPCell(new Phrase("inkl.", standard_lightblue));
+                if (CenaMontaz != "0")
+                {
+                    suma = String.Format("{0:0.00}", Convert.ToDouble(CenaMontaz.Replace(",", "."))).Replace(".", ",");
+                    cell = new PdfPCell(new Phrase(suma + " €", standard_lightblue));
+                }
+                else
+                {
+                    cell = new PdfPCell(new Phrase("inkl.", standard_lightblue));
+                }
             }
             cell.HorizontalAlignment = 2;
             cell.Border = Rectangle.RIGHT_BORDER | Rectangle.BOTTOM_BORDER;
