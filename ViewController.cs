@@ -131,6 +131,16 @@ namespace Oferta__
                     MainClass.AusstattungOd = AusstattungOd.IntValue;
                     MainClass.AusstattungDo = AusstattungDo.IntValue;
                     MainClass.Gesamtpreis = Gesamtpreis.DoubleValue;
+
+                    if (Kedernut.SelectedSegment == 0)
+                    {
+                        MainClass.Kedernut = "4";
+                    }
+                    else
+                    {
+                        MainClass.Kedernut = "2";
+                    }
+
                     Bestellungsformullar.CreatePDF();
                     Save();
                     InfoLabel1.StringValue = "PDF został stworzony.";
@@ -160,6 +170,30 @@ namespace Oferta__
                 SearchText.Hidden = false;
                 SearchTextField.Hidden = false;
                 AdvancedSearchBox.Hidden = true;
+            }
+        }
+
+        partial void MontageSwitch_Click(NSObject sender)
+        {
+            if (Convert.ToString(MontageSwitch.State) == "On")
+            {
+                MontageBox.Hidden = true;
+            }
+            else
+            {
+                MontageBox.Hidden = false;
+            }
+        }
+
+        partial void UnterlagenSwitch_Click(NSObject sender)
+        {
+            if(Convert.ToString(UnterlagenSwitch.State) == "On")
+            {
+                UnterlagenBox.Hidden = true;
+            }
+            else
+            {
+                UnterlagenBox.Hidden = false;
             }
         }
 
@@ -791,6 +825,19 @@ namespace Oferta__
                     string[] typ = MainClass.Halledaten[0].Split(" ");
                     SetTechDate(typ);
                     MainClass.Unterlagen = Unterlagen.StringValue;
+
+                    MainClass.MontageState = Convert.ToString(MontageSwitch.State);
+                    MainClass.UnterlagenState = Convert.ToString(UnterlagenSwitch.State);
+
+                    if(Kedernut.SelectedSegment == 0)
+                    {
+                        MainClass.Kedernut = "4";
+                    }
+                    else
+                    {
+                        MainClass.Kedernut = "2";
+                    }
+
                     MainClass.CreatePDF();
                     MainClass.CreateAGB();
                     Save();
@@ -810,6 +857,19 @@ namespace Oferta__
                     string[] typ = MainClass.Halledaten[0].Split(" ");
                     SetTechDate(typ);
                     MainClass.Unterlagen = Unterlagen.StringValue;
+
+                    MainClass.MontageState = Convert.ToString(MontageSwitch.State);
+                    MainClass.UnterlagenState = Convert.ToString(UnterlagenSwitch.State);
+
+                    if (Kedernut.SelectedSegment == 0)
+                    {
+                        MainClass.Kedernut = "4";
+                    }
+                    else
+                    {
+                        MainClass.Kedernut = "2";
+                    }
+
                     MainClass.CreatePDF();
                     MainClass.CreateAGB();
                     Save();
@@ -1929,6 +1989,13 @@ namespace Oferta__
             dane[82] = AusstattungOd.StringValue;
             dane[83] = AusstattungDo.StringValue;
 
+            //aktualizacja puste montage i unterlagen
+            dane[84] = Convert.ToString(MontageSwitch.State);
+            dane[85] = Convert.ToString(MontageSwitch.State);
+
+            //akutalizacja "małe" hale PT
+            dane[86] = Convert.ToString(Kedernut.SelectedSegment);
+
             int count = 0;
             string[] baza5 = new string[0];
             if(MainClass.bazaTabela5.Length > 0)
@@ -2641,6 +2708,38 @@ namespace Oferta__
                 Gesamtpreis.StringValue = dane[81];
                 AusstattungOd.StringValue = dane[82];
                 AusstattungDo.StringValue = dane[83];
+
+                //aktualizacja puste montage i unterlagen
+                if(dane[84].Length > 0)
+                {
+                    if(dane[84] == "On")
+                    {
+                        MontageSwitch.State = NSCellStateValue.On;
+                        MontageBox.Hidden = true;
+                    }
+                    else
+                    {
+                        MontageSwitch.State = NSCellStateValue.Off;
+                    }
+                }
+                if(dane[85].Length > 0)
+                {
+                    if(dane[85] == "On")
+                    {
+                        UnterlagenSwitch.State = NSCellStateValue.On;
+                        UnterlagenBox.Hidden = true;
+                    }
+                    else
+                    {
+                        UnterlagenSwitch.State = NSCellStateValue.Off;
+                    }
+                }
+
+                //aktualizacja "małe" hale PT
+                if(dane[86].Length > 0)
+                {
+                    Kedernut.SelectedSegment = Convert.ToInt32(dane[86]);
+                }
 
 
                 //zabezpieczenie przed starymi wersjami

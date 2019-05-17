@@ -101,6 +101,13 @@ namespace Oferta__
         public static int AusstattungOd = 0;
         public static int AusstattungDo = 0;
 
+        //puste montage i unterlagen
+        public static string MontageState = "";
+        public static string UnterlagenState = "";
+
+        //dla "malych" hal; PT
+        public static string Kedernut = "";
+
         public static DateTime dataoferty;
         public static DateTime datapotwierdzenia;
 
@@ -1301,7 +1308,7 @@ namespace Oferta__
             if(typ[1].Substring(0, 2) == "PT")
             {
                 phrase = new Phrase(new Chunk("Dacheindeckung und Giebeldreieck: ", standard_bold));
-                phrase.Add(new Chunk("PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + Technische[4] + " g/m², schwerentflammbar gemäß DIN4102/B1. Es ist in den 4-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß - es kann nach Absprache und evtl. gegen Aufpreis in anderen Farben geliefert werden.", standard));
+                phrase.Add(new Chunk("PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + Technische[4] + " g/m², schwerentflammbar gemäß DIN4102/B1. Es ist in den " + Kedernut + "-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß - es kann nach Absprache und evtl. gegen Aufpreis in anderen Farben geliefert werden.", standard));
                 par = new Paragraph(phrase);
 
                 par.SpacingAfter = -4f;
@@ -1627,7 +1634,14 @@ namespace Oferta__
 
             phrase = new Phrase(new Chunk("Unterlagen:\n", standard_bold));
             //phrase.Add(new Chunk("Eine prüffähige Statik nach Eurocode (EC) DIN-EN 13782 / DIN-EN 1991 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.", standard));
-            phrase.Add(new Chunk(Unterlagen, standard));
+            if(UnterlagenState == "Off")
+            {
+                phrase.Add(new Chunk(Unterlagen, standard));
+            }
+            else
+            {
+                phrase.Add(new Chunk(" \n ", standard));
+            }
             par = new Paragraph(phrase);
             par.SpacingAfter = -4f;
             par.SetLeading(10f, 0f);
@@ -1639,7 +1653,14 @@ namespace Oferta__
             par.Alignment = 0;
             doc.Add(par);
 
-            phrase = new Phrase(new Chunk(AufWunsch, standard));
+            if(UnterlagenState == "Off")
+            {
+                phrase = new Phrase(new Chunk(AufWunsch, standard));
+            }
+            else
+            {
+                phrase = new Phrase(new Chunk(" \n ", standard));
+            }
             par = new Paragraph(phrase);
             par.SpacingAfter = -4f;
             par.SetLeading(10f, 0f);
@@ -1665,8 +1686,12 @@ namespace Oferta__
             doc.Add(par);
 
             phrase = new Phrase(new Chunk("Montage:\n", standard_blue));
-            //phrase.Add(new Chunk(Montage + "\n ", standard_lightblue)); 
-            if(bazaTabela3.Length > 0)
+            //phrase.Add(new Chunk(Montage + "\n ", standard_lightblue));
+            if(MontageState == "On")
+            {
+                phrase = new Phrase(new Chunk("Ohne Montage", standard_blue));
+            }
+            else if (bazaTabela3.Length > 0)
             {
                 if (bazaTabela3.Length > 0)
                 {

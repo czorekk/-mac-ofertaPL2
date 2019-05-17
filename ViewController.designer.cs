@@ -151,6 +151,9 @@ namespace Oferta__
 		AppKit.NSTextField InfoLabel1 { get; set; }
 
 		[Outlet]
+		AppKit.NSSegmentedControl Kedernut { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField Komentarz { get; set; }
 
 		[Outlet]
@@ -203,6 +206,12 @@ namespace Oferta__
 
 		[Outlet]
 		AppKit.NSTextField MontageAGB { get; set; }
+
+		[Outlet]
+		AppKit.NSBox MontageBox { get; set; }
+
+		[Outlet]
+		AppKit.NSButton MontageSwitch { get; set; }
 
 		[Outlet]
 		AppKit.NSTextField Name { get; set; }
@@ -358,6 +367,12 @@ namespace Oferta__
 		AppKit.NSTextField Unterlagen { get; set; }
 
 		[Outlet]
+		AppKit.NSBox UnterlagenBox { get; set; }
+
+		[Outlet]
+		AppKit.NSButton UnterlagenSwitch { get; set; }
+
+		[Outlet]
 		AppKit.NSButton Up1 { get; set; }
 
 		[Outlet]
@@ -480,6 +495,9 @@ namespace Oferta__
 		[Action ("MailCreateButton2_Click:")]
 		partial void MailCreateButton2_Click (Foundation.NSObject sender);
 
+		[Action ("MontageSwitch_Click:")]
+		partial void MontageSwitch_Click (Foundation.NSObject sender);
+
 		[Action ("OpenButton1_Click:")]
 		partial void OpenButton1_Click (Foundation.NSObject sender);
 
@@ -525,6 +543,9 @@ namespace Oferta__
 		[Action ("TypHali_Click:")]
 		partial void TypHali_Click (Foundation.NSObject sender);
 
+		[Action ("UnterlagenSwitch_Click:")]
+		partial void UnterlagenSwitch_Click (Foundation.NSObject sender);
+
 		[Action ("Up1_Click:")]
 		partial void Up1_Click (Foundation.NSObject sender);
 
@@ -563,6 +584,16 @@ namespace Oferta__
 			if (AufWunsch != null) {
 				AufWunsch.Dispose ();
 				AufWunsch = null;
+			}
+
+			if (AusstattungDo != null) {
+				AusstattungDo.Dispose ();
+				AusstattungDo = null;
+			}
+
+			if (AusstattungOd != null) {
+				AusstattungOd.Dispose ();
+				AusstattungOd = null;
 			}
 
 			if (Bezeichnung != null) {
@@ -663,6 +694,31 @@ namespace Oferta__
 			if (DeleteButton1 != null) {
 				DeleteButton1.Dispose ();
 				DeleteButton1 = null;
+			}
+
+			if (MontageBox != null) {
+				MontageBox.Dispose ();
+				MontageBox = null;
+			}
+
+			if (MontageSwitch != null) {
+				MontageSwitch.Dispose ();
+				MontageSwitch = null;
+			}
+
+			if (UnterlagenBox != null) {
+				UnterlagenBox.Dispose ();
+				UnterlagenBox = null;
+			}
+
+			if (UnterlagenSwitch != null) {
+				UnterlagenSwitch.Dispose ();
+				UnterlagenSwitch = null;
+			}
+
+			if (Kedernut != null) {
+				Kedernut.Dispose ();
+				Kedernut = null;
 			}
 
 			if (DeleteButton2 != null) {
@@ -818,16 +874,6 @@ namespace Oferta__
 			if (Lieferungskosten != null) {
 				Lieferungskosten.Dispose ();
 				Lieferungskosten = null;
-			}
-
-			if (AusstattungOd != null) {
-				AusstattungOd.Dispose ();
-				AusstattungOd = null;
-			}
-
-			if (AusstattungDo != null) {
-				AusstattungDo.Dispose ();
-				AusstattungDo = null;
 			}
 
 			if (Lieferzeit != null) {

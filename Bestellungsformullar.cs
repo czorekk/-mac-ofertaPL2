@@ -356,7 +356,7 @@ namespace Oferta__
             if (typ[1].Substring(0, 2) == "PT")
             {
                 phrase = new Phrase(new Chunk("Dacheindeckung und Giebeldreieck: ", standard_bold));
-                phrase.Add(new Chunk("PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + MainClass.Technische[4] + " g/m², schwerentflammbar gemäß DIN4102/B1. Es ist in den 4-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß - es kann nach Absprache und evtl. gegen Aufpreis in anderen Farben geliefert werden.", standard));
+                phrase.Add(new Chunk("PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + MainClass.Technische[4] + " g/m², schwerentflammbar gemäß DIN4102/B1. Es ist in den " + MainClass.Kedernut + "-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß - es kann nach Absprache und evtl. gegen Aufpreis in anderen Farben geliefert werden.", standard));
                 phrase.Add(new Chunk("\nFarbton: ............................................................................................", standard));
                 par = new Paragraph(phrase);
 
