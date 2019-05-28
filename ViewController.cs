@@ -2210,8 +2210,52 @@ namespace Oferta__
                 {
                     windlast = true;
                 }
+                bool typ = false;
+                if(SearchTypHali.StringValue.Length > 0)
+                {
+                    if(dane[10].Length > 0)
+                    {
+                        if(dane[10].Split(" ").Length > 1)
+                        {
+                            if(dane[10].Split(" ").Length > 2)
+                            {
+                                if(dane[10].Split(" ")[2] == SearchTypHali.StringValue)
+                                {
+                                    typ = true;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                if(dane[10].Split(" ")[1] == SearchTypHali.StringValue)
+                                {
+                                    typ = true;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    typ = true;
+                }
 
-                if(szerokosc == true && wysokosc == true && dlugosc == true && schneelast == true && windlast == true)
+                if (szerokosc == true && wysokosc == true && dlugosc == true && schneelast == true && windlast == true && typ == true)
                 {
                     Array.Resize(ref lista, lista.Length + 1);
                     lista[lista.Length - 1] = lista2[i];

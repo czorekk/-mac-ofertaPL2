@@ -271,6 +271,9 @@ namespace Oferta__
 		AppKit.NSTextField SearchTextField { get; set; }
 
 		[Outlet]
+		AppKit.NSTextField SearchTypHali { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField SearchWindlast { get; set; }
 
 		[Outlet]
@@ -696,31 +699,6 @@ namespace Oferta__
 				DeleteButton1 = null;
 			}
 
-			if (MontageBox != null) {
-				MontageBox.Dispose ();
-				MontageBox = null;
-			}
-
-			if (MontageSwitch != null) {
-				MontageSwitch.Dispose ();
-				MontageSwitch = null;
-			}
-
-			if (UnterlagenBox != null) {
-				UnterlagenBox.Dispose ();
-				UnterlagenBox = null;
-			}
-
-			if (UnterlagenSwitch != null) {
-				UnterlagenSwitch.Dispose ();
-				UnterlagenSwitch = null;
-			}
-
-			if (Kedernut != null) {
-				Kedernut.Dispose ();
-				Kedernut = null;
-			}
-
 			if (DeleteButton2 != null) {
 				DeleteButton2.Dispose ();
 				DeleteButton2 = null;
@@ -821,6 +799,11 @@ namespace Oferta__
 				InfoLabel1 = null;
 			}
 
+			if (Kedernut != null) {
+				Kedernut.Dispose ();
+				Kedernut = null;
+			}
+
 			if (Komentarz != null) {
 				Komentarz.Dispose ();
 				Komentarz = null;
@@ -909,6 +892,16 @@ namespace Oferta__
 			if (MontageAGB != null) {
 				MontageAGB.Dispose ();
 				MontageAGB = null;
+			}
+
+			if (MontageBox != null) {
+				MontageBox.Dispose ();
+				MontageBox = null;
+			}
+
+			if (MontageSwitch != null) {
+				MontageSwitch.Dispose ();
+				MontageSwitch = null;
 			}
 
 			if (Name != null) {
@@ -1029,6 +1022,11 @@ namespace Oferta__
 			if (Stallhalle != null) {
 				Stallhalle.Dispose ();
 				Stallhalle = null;
+			}
+
+			if (SearchTypHali != null) {
+				SearchTypHali.Dispose ();
+				SearchTypHali = null;
 			}
 
 			if (Starke1 != null) {
@@ -1164,6 +1162,16 @@ namespace Oferta__
 			if (Unterlagen != null) {
 				Unterlagen.Dispose ();
 				Unterlagen = null;
+			}
+
+			if (UnterlagenBox != null) {
+				UnterlagenBox.Dispose ();
+				UnterlagenBox = null;
+			}
+
+			if (UnterlagenSwitch != null) {
+				UnterlagenSwitch.Dispose ();
+				UnterlagenSwitch = null;
 			}
 
 			if (Up1 != null) {
