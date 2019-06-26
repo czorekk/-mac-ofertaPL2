@@ -1235,50 +1235,13 @@ namespace Oferta__
                 }
             }
 
-            string opis1 = "";
-            string opis2 = "";
-            string opis3 = "";
-            if(typ[1].Substring(0,2) == "TT")
-            {
-                //opis1 = "Konstruktion aus Aluminiumkastenprofil mit Zugbändern, mit First- und Eckverbindungen aus feuerverzinktem Stahl. Die feuerverzinkten Fußplatten sind entsprechend den statischen Erfordernissen mittels Erdnägeln (1,00 m lang) auf nicht bindigen, dicht gelagerten Boden evtl. Schwerlastdübeln auf Fundamenten verankert.";
-                opis1 = TechnischeDaten;
-                opis2 = "Dacheindeckung und Giebeldreieck: PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + Technische[4] + " g/m², schwerentflammbar gemäß DIN4102/B1. Es ist in den 4-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß - es kann nach Absprache und evtl. gegen Aufpreis in anderen Farben geliefert werden.";
-                opis3 = "Zur Isolierung und Kondenswasservermeidung kann im Dachbereich (von Traufe bis Traufe) gegen Aufpreis eine lichtdurchlässige Innenplane montiert werden.";
-            }
-            else if(typ[1].Substring(0, 2) == "PT")
-            {
-                //opis1 = "Konstruktion aus Aluminiumkastenprofil mit Zugbändern, mit First- und Eckverbindungen aus feuerverzinktem Stahl. Die feuerverzinkten Fußplatten sind entsprechend den statischen Erfordernissen mittels Erdnägeln (1,00 m lang) auf nicht bindigen, dicht gelagerten Boden (DIN-EN 13782) evtl. Schwerlastdübeln auf Fundamenten (DIN-EN 1991) verankert.";
-                opis1 = TechnischeDaten;
-                opis2 = "Dacheindeckung und Giebeldreieck: PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + Technische[4] + " g/m², schwerentflammbar gemäß DIN4102/B1. Es ist in den 4-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß - es kann nach Absprache und evtl. gegen Aufpreis in anderen Farben geliefert werden.";
-                opis3 = "Zur Isolierung und Kondenswasservermeidung kann im Dachbereich (von Traufe bis Traufe) gegen Aufpreis eine lichtdurchlässige Innenplane montiert werden.";
-            }
-            else if(typ[1].Substring(0, 2) == "PP")
-            {
-                opis1 = TechnischeDaten;
-                opis2 = "Dacheindeckung und Giebeldreieck: PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + Technische[4] + " g/m², schwerentflammbar gemäß DIN4102/B1. Es ist in den 4-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß - es kann nach Absprache und evtl. gegen Aufpreis in anderen Farben geliefert werden.";
-                opis3 = "Zur Isolierung und Kondenswasservermeidung kann im Dachbereich (von Traufe bis Traufe) gegen Aufpreis eine lichtdurchlässige Innenplane montiert werden.";
-            }
-            else if (typ[1].Substring(0, 3) == "ISO")
-            {
-                //opis1 = "Konstruktion aus Doppel-T-Träger IPE240 (Riegel) und HEA 180 (Ständer), ohne Zugbändern (Flacheisen). Baustahl 235, feuerverzinkt nach DIN-EN ISO 1461. Die Fußplattern sind entsprechend den statischen Erfordernissen mittles Schwerlastdübeln auf Fundementen verankert.";
-                opis1 = TechnischeDaten;
-                opis2 = "Sandwichpaneelen, Stärke 40mm, chwerentflammbar nach DIN 4102 Baustoffklasse 1, U-Wert";
-                opis3 = "";
-            }
-            else if (typ[1].Substring(0, 3) == "DPS")
-            {
-                //opis1 = "Konstruktion aus Aluminiumkastenprofil mit Zugbändern, mit First- und Eckverbindungen aus feuerverzinktem Stahl. Die feuerverzinkten Fußplatten sind entsprechend den statischen Erfordernissen mittels Erdnägeln (1,00 m lang) auf nicht bindigen, dicht gelagerten Boden (DIN-EN 13782) evtl. Schwerlastdübeln auf Fundamenten (DIN-EN 1991) verankert.";
-                opis1 = TechnischeDaten;
-            }
 
-            par = new Paragraph(new Phrase(opis1, standard));
+
+            par = new Paragraph(new Phrase(TechnischeDaten, standard));
             par.SpacingAfter = -4f;
             par.SetLeading(10f, 0f);
             par.Alignment = 0;
             doc.Add(par);
-            Console.WriteLine(typ[1]);
-            Console.WriteLine("opis|"+ opis1);
-            Console.WriteLine("tech|" + TechnischeDaten);
             par = new Paragraph(new Phrase(" ", standard));
             par.SpacingAfter = 0f;
             par.Alignment = 0;
@@ -1331,7 +1294,7 @@ namespace Oferta__
             else if(typ[1].Substring(0, 2) == "TT")
             {
                 phrase = new Phrase(new Chunk("Dacheindeckung: ", standard_bold));
-                phrase.Add(new Chunk("bestehend aus verzinkten und kunststoffbeschichteten Stahl-Trapezblechen T35 / T18, Stärke " + Technische[0] + " mm.", standard));
+                phrase.Add(new Chunk("bestehend aus verzinkten und kunststoffbeschichteten Stahl-Trapezblechen T35 / T18, Stäke " + Technische[0] + " mm.", standard));
                 par = new Paragraph(phrase);
 
                 par.SpacingAfter = -4f;
@@ -1347,7 +1310,7 @@ namespace Oferta__
             else if (typ[1].Substring(0, 2) == "PP")
             {
                 phrase = new Phrase(new Chunk("Dacheindeckung und Wandverkleidung: ", standard_bold));
-                phrase.Add(new Chunk("PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + Technische[4] + " g/m2, schwerentflammbar gemäß DIN4102/B1. Es ist in den 4-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß oder Grün - es kann nach Absprache in anderen Farben geliefert werden.", standard));
+                phrase.Add(new Chunk("PVC- beschichtete Gewebe hoch-glanz-lackiert, Gewicht " + Technische[4] + " g/m2, schwerentflammbar gemäß DIN4102/B1. Es ist in den 4-Kedernut Alu-Profil eingezogen. Das PVC- Material in Standardfarbe Weiß oder Grün - es kann nach Absprache in anderen Farben geliefert werden.", standard));
                 par = new Paragraph(phrase);
 
                 par.SpacingAfter = -4f;
@@ -1443,7 +1406,7 @@ namespace Oferta__
 
             if (typ[1].Substring(0, 2) == "PT")
             {
-                phrase = new Phrase(new Chunk("Wandverkleidung ", standard_bold));
+                phrase = new Phrase(new Chunk("Wandverkleidung: ", standard_bold));
                 phrase.Add(new Chunk("bestehend aus waagerecht (evtl. senkrecht) verlegten, verzinkten und kunststoffbeschichteten Stahl-Trapezblechen T35 / T18, Stärke " + Technische[2] + " mm.", standard));
                 par = new Paragraph(phrase);
 
@@ -1459,7 +1422,7 @@ namespace Oferta__
             }
             else if (typ[1].Substring(0, 2) == "PP")
             {
-                phrase = new Phrase(new Chunk("Wandverkleidung ", standard_bold));
+                phrase = new Phrase(new Chunk("Wandverkleidung: ", standard_bold));
                 phrase.Add(new Chunk("bestehend aus waagerecht (evtl. senkrecht) verlegten, verzinkten und kunststoffbeschichteten Stahl-Trapezblechen T35 / T18, Stärke " + Technische[2] + " mm.", standard));
                 par = new Paragraph(phrase);
 
@@ -1475,7 +1438,7 @@ namespace Oferta__
             }
             else if (typ[1].Substring(0, 2) == "TT")
             {
-                phrase = new Phrase(new Chunk("Wandverkleidung ", standard_bold));
+                phrase = new Phrase(new Chunk("Wandverkleidung: ", standard_bold));
                 phrase.Add(new Chunk("bestehend aus waagerecht verlegten, verzinkten und kunststoffbeschichteten Stahl-Trapezblechen T35 / T18, Stärke " + Technische[2] + " mm.", standard));
                 par = new Paragraph(phrase);
 
@@ -1533,7 +1496,7 @@ namespace Oferta__
             if (typ[1].Substring(0, 2) == "PT")
             {
 
-                phrase = new Phrase(new Chunk("Zur Isolierung und Kondenswasservermeidung kann im Dachbereich (von Traufe bis Traufe) gegen Aufpreis eine lichtdurchlässige Innenplane montiert werden.", standard_lightblue));
+                phrase = new Phrase(new Chunk("Zur Isolierung und Kondenswasservermeidung kann im Dachbereich (von Traufe bis Traufe) gegen Aufpreis eine lichtdurchlässige Innenplane montiert werden.", standard_lightblue));
                 par = new Paragraph(phrase);
                 par.SpacingAfter = -4f;
                 par.SetLeading(10f, 0f);
@@ -1563,7 +1526,7 @@ namespace Oferta__
             if (typ[1].Substring(0, 2) == "PP")
             {
 
-                phrase = new Phrase(new Chunk("Zur Isolierung und Kondenswasservermeidung kann im Dachbereich (von Traufe bis Traufe) gegen Aufpreis eine lichtdurchlässige Innenplane montiert werden.", standard_lightblue));
+                phrase = new Phrase(new Chunk("Zur Isolierung und Kondenswasservermeidung kann im Dachbereich (von Traufe bis Traufe) gegen Aufpreis eine lichtdurchlässige Innenplane montiert werden.", standard_lightblue));
                 par = new Paragraph(phrase);
                 par.SpacingAfter = -4f;
                 par.SetLeading(10f, 0f);
@@ -1654,6 +1617,7 @@ namespace Oferta__
             par.SetLeading(10f, 0f);
             par.Alignment = 0;
             doc.Add(par);
+            Console.WriteLine( "Unterlagen:"+Unterlagen );
 
             par = new Paragraph(new Phrase(" ", standard));
             par.SpacingAfter = 0f;
@@ -1742,7 +1706,7 @@ namespace Oferta__
             par.Alignment = 0;
             doc.Add(par);
 
-            phrase = new Phrase(new Chunk("Bei Fragen stehe ich Ihnen gerne zuer Verfügang.\n ", standard));
+            phrase = new Phrase(new Chunk("Bei Fragen stehe ich Ihnen gerne zur Verfügung.\n ", standard));
             par = new Paragraph(phrase);
             par.SpacingAfter = -4f;
             par.SetLeading(10f, 0f);
@@ -2532,7 +2496,7 @@ namespace Oferta__
 
             phrase = new Phrase(new Chunk("Zahlung bei Kauf:\n", standard_10));
             phrase.Add(new Chunk("1) Mit Montage: 30 % vom Auftragswert bei Bestellung. 60 % bei Anlieferung, zahlbar vor Abladung. Die restlichen 10 % nach Abnahme/ Fertigstellung.\n", standard_10));
-            phrase.Add(new Chunk("Ohne Montage: 40% vom Auftragswert bei Bestellung, Restzahlung 60% bei Anlieferung, vor Abladung.", standard_10));
+            phrase.Add(new Chunk("Ohne Montage: 40% vom Auftragswert bei Bestellung, Restzahlung 60 % bei Anlieferung, vor Abladung.", standard_10));
             par = new Paragraph(phrase);
             par.SpacingAfter = -4f;
             par.SetLeading(10f, 0f);

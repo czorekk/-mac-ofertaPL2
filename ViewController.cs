@@ -682,7 +682,7 @@ namespace Oferta__
                     Tab7.Hidden = true;
                     if (typp == "TT" && (typp != TypHali || Stallhalle.State.ToString() != Stallhallee))
                     {
-                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
+                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
                         if (Stallhalle.State.ToString() == "Off")
                         {
                             TechnischeDaten.StringValue = "Konstruktion aus Aluminiumkastenprofil mit Zugbändern, mit First- und Eckverbindungen aus feuerverzinktem Stahl. Die feuerverzinkten Fußplatten sind entsprechend den statischen Erfordernissen mittels Erdnägeln (1,00 m lang) auf nicht bindigen, dicht gelagerten Boden (DIN-EN 13782) evtl. Schwerlastdübeln auf Fundamenten (DIN-EN 1991) verankert.";
@@ -697,8 +697,7 @@ namespace Oferta__
                     }
                     else if (typp == "PT" && (typp != TypHali || Stallhalle.State.ToString() != Stallhallee))
                     {
-                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
-                        if (Stallhalle.State.ToString() == "Off")
+                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung."; if (Stallhalle.State.ToString() == "Off")
                         {
                             TechnischeDaten.StringValue = "Konstruktion aus Aluminiumkastenprofil mit Zugbändern, mit First- und Eckverbindungen aus feuerverzinktem Stahl. Die feuerverzinkten Fußplatten sind entsprechend den statischen Erfordernissen mittels Erdnägeln (1,00 m lang) auf nicht bindigen, dicht gelagerten Boden (DIN-EN 13782) evtl. Schwerlastdübeln auf Fundamenten (DIN-EN 1991) verankert.";
                         }
@@ -711,8 +710,7 @@ namespace Oferta__
                     }
                     else if (typp == "PP" && (typp != TypHali || Stallhalle.State.ToString() != Stallhallee))
                     {
-                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
-                        if (Stallhalle.State.ToString() == "Off")
+                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung."; if (Stallhalle.State.ToString() == "Off")
                         {
                             TechnischeDaten.StringValue = "Konstruktion aus Aluminiumkastenprofil mit Zugbändern, mit First- und Eckverbindungen aus feuerverzinktem Stahl. Die feuerverzinkten Fußplatten sind entsprechend den statischen Erfordernissen mittels Erdnägeln (1,00 m lang) auf nicht bindigen, dicht gelagerten Boden (DIN-EN 13782) evtl. Schwerlastdübeln auf Fundamenten (DIN-EN 1991) verankert.";
                         }
@@ -750,16 +748,14 @@ namespace Oferta__
                         }
                         else
                         {
-                            TechnischeDaten.StringValue = "Konstruktion aus Doppel-T-Träger HEA 240 mit Zugband (Flacheisen), Baustahl S355, feuerverzinkt nach DIN-EN ISO 1461. Die Fußplattern sind entsprechend den statischen Erfordernissen mittles Schwerlastdübeln auf Fundementen verankert.";
+                            TechnischeDaten.StringValue = "Konstruktion aus Doppel-T-Träger HEA 240 mit Zugband (Flacheisen), Baustahl S355, feuerverzinkt nach DIN-EN ISO 1461. Die Fußplatten sind entsprechend den statischen Erfordernissen mittels Schwerlastdübeln auf Fundementen verankert.";
                         }
-                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN-EN 1991 (Permanenter Bau) und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
-                        TypHali = "ISO";
+                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung."; TypHali = "ISO";
                         Stallhallee = Stallhalle.State.ToString();
                     }
                     else if (typp == "DPS" && (typp != TypHali || Stallhalle.State.ToString() != Stallhallee))
                     {
-                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
-                        if (Stallhalle.State.ToString() == "Off")
+                        Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung."; if (Stallhalle.State.ToString() == "Off")
                         {
                             TechnischeDaten.StringValue = "Konstruktion aus Aluminiumkastenprofil mit Zugbändern, mit First- und Eckverbindungen aus feuerverzinktem Stahl. Die feuerverzinkten Fußplatten sind entsprechend den statischen Erfordernissen mittels Erdnägeln (1,00 m lang) auf nicht bindigen, dicht gelagerten Boden (DIN-EN 13782) evtl. Schwerlastdübeln auf Fundamenten (DIN-EN 1991) verankert.";
                         }
@@ -1642,7 +1638,7 @@ namespace Oferta__
             Tab1.Hidden = false;
             Tab0.Hidden = true;
             HauptProfilGewicht.Enabled = false;
-            Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
+            Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
 
 
 
@@ -2707,9 +2703,9 @@ namespace Oferta__
 
             if(dane[70].Length < 1)
             {
-                Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
-            }
-            else
+                    Unterlagen.StringValue = "Eine prüffähige Statik nach Eurocode (EC) DIN EN 1991 / DIN EN 13782 und Konstruktionspläne gehören zu unserem Lieferumfang. Sie bekommen die Konstruktionspläne kostenlos vor verbindlicher Bestellung.";
+                }
+                else
             {
                 Unterlagen.StringValue = dane[70].Replace("||", Environment.NewLine);
             }

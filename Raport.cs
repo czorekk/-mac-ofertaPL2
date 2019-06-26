@@ -347,8 +347,8 @@ namespace Oferta__
             Paragraph par;
             Phrase phrase;
 
-            BaseFont arial = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/Arial.ttf")), BaseFont.CP1250, BaseFont.EMBEDDED);
-            BaseFont arialbd = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/ARIALBD0.TTF")), BaseFont.CP1250, BaseFont.EMBEDDED);
+            BaseFont arial = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/Arial.ttf")), BaseFont.CP1252, BaseFont.EMBEDDED);
+            BaseFont arialbd = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/ARIALBD0.TTF")), BaseFont.CP1252, BaseFont.EMBEDDED);
 
             Font logo = new Font(arialbd, 20f, Font.NORMAL, BaseColor.BLACK);
 
@@ -466,7 +466,7 @@ namespace Oferta__
                 table.AddCell(cell);
 
                 string[] dane = File.ReadAllLines(pliki[count]);
-
+                Console.WriteLine(dane[0]);
                 cell = new PdfPCell(new Phrase(dane[0], standard));
                 cell.HorizontalAlignment = 1;
                 cell.UseAscender = true;
@@ -543,8 +543,8 @@ namespace Oferta__
                         Array.Reverse(dane);
                     }
                 }
-
-                if (dane[51] == "")
+                
+                if (dane[51] == "" || int.TryParse(dane[51], out int n) == false)
                 {
                     dane[51] = "0";
                 }
@@ -592,8 +592,12 @@ namespace Oferta__
                 count++;
             } while (count < pliki.Length);
 
-            table.TotalWidth = doc.Right - doc.Left;
+            //Console.WriteLine(doc.Right + " " + doc.Left);
+
+            table.TotalWidth = (doc.Right - doc.Left);
             table.LockedWidth = true;
+
+
 
             table.SetWidths(new float[] { 0.5f, 2f, 2f, 2f, 3f, 1.5f, 1.5f, 2f, 3f });
 
