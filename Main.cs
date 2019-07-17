@@ -136,10 +136,10 @@ namespace Oferta__
             Paragraph par;
             Phrase phrase;
 
-            BaseFont impact = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/impact.ttf")), BaseFont.CP1252, BaseFont.EMBEDDED);
-            BaseFont arial = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/Arial.ttf")), BaseFont.CP1252, BaseFont.EMBEDDED);
-            BaseFont arialbd = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/ARIALBD.TTF")), BaseFont.CP1252, BaseFont.EMBEDDED);
-            BaseFont verdana = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/verdana.TTF")), BaseFont.CP1252, BaseFont.EMBEDDED);
+            BaseFont impact = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/impact.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED); //CP1252
+            BaseFont arial = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/Arial.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont arialbd = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/ARIALBD.TTF")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont verdana = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/verdana.TTF")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             BaseFont simsun = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/SIMSUN.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
             Font logo1 = new Font(impact, 27f, Font.NORMAL, new BaseColor(102, 102, 102));
@@ -1919,10 +1919,10 @@ namespace Oferta__
             Paragraph par;
             Phrase phrase;
 
-            BaseFont impact = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/impact.ttf")), BaseFont.CP1252, BaseFont.EMBEDDED);
-            BaseFont arial = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/Arial.ttf")), BaseFont.CP1252, BaseFont.EMBEDDED);
-            BaseFont arialbd = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/ARIALBD.TTF")), BaseFont.CP1252, BaseFont.EMBEDDED);
-            BaseFont verdana = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/verdana.TTF")), BaseFont.CP1252, BaseFont.EMBEDDED);
+            BaseFont impact = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/impact.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont arial = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/Arial.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont arialbd = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/ARIALBD.TTF")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont verdana = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/verdana.TTF")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             BaseFont simsun = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/SIMSUN.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
             Font logo1 = new Font(impact, 27f, Font.NORMAL, new BaseColor(102, 102, 102));

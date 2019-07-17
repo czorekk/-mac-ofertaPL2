@@ -347,8 +347,8 @@ namespace Oferta__
             Paragraph par;
             Phrase phrase;
 
-            BaseFont arial = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/Arial.ttf")), BaseFont.CP1252, BaseFont.EMBEDDED);
-            BaseFont arialbd = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/ARIALBD0.TTF")), BaseFont.CP1252, BaseFont.EMBEDDED);
+            BaseFont arial = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/Arial.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont arialbd = BaseFont.CreateFont(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace("Oferta+.app/Contents/MonoBundle", "Fonts/ARIALBD0.TTF")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
             Font logo = new Font(arialbd, 20f, Font.NORMAL, BaseColor.BLACK);
 

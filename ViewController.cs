@@ -159,18 +159,22 @@ namespace Oferta__
 
         partial void SearchCheckBox_Click(NSObject sender)
         {
+            var frame = SearchList.Frame;
             if(Convert.ToString(SearchCheckBox.State) == "On")
             {
                 SearchText.Hidden = true;
                 SearchTextField.Hidden = true;
                 AdvancedSearchBox.Hidden = false;
+                frame.Height = frame.Height - 80; //wysokosc 0 jest od dolu
             }
             else
             {
                 SearchText.Hidden = false;
                 SearchTextField.Hidden = false;
                 AdvancedSearchBox.Hidden = true;
+                frame.Height = frame.Height + 80;
             }
+            SearchList.Frame = frame;
         }
 
         partial void MontageSwitch_Click(NSObject sender)
@@ -2205,6 +2209,13 @@ namespace Oferta__
                 else
                 {
                     windlast = true;
+                }
+                if(SearchEmail.StringValue.Length > 0)
+                {
+                    if(dane[68] != SearchEmail.StringValue)
+                    {
+                        continue;
+                    }
                 }
                 bool typ = false;
                 if(SearchTypHali.StringValue.Length > 0)

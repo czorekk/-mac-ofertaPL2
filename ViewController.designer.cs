@@ -259,6 +259,12 @@ namespace Oferta__
 		AppKit.NSTextField SearchDlugosc { get; set; }
 
 		[Outlet]
+		AppKit.NSTextField SearchEmail { get; set; }
+
+		[Outlet]
+		AppKit.NSScrollView SearchList { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField SearchSchneelast { get; set; }
 
 		[Outlet]
@@ -999,6 +1005,11 @@ namespace Oferta__
 				SearchTextField = null;
 			}
 
+			if (SearchTypHali != null) {
+				SearchTypHali.Dispose ();
+				SearchTypHali = null;
+			}
+
 			if (SearchWindlast != null) {
 				SearchWindlast.Dispose ();
 				SearchWindlast = null;
@@ -1022,11 +1033,6 @@ namespace Oferta__
 			if (Stallhalle != null) {
 				Stallhalle.Dispose ();
 				Stallhalle = null;
-			}
-
-			if (SearchTypHali != null) {
-				SearchTypHali.Dispose ();
-				SearchTypHali = null;
 			}
 
 			if (Starke1 != null) {
@@ -1257,6 +1263,16 @@ namespace Oferta__
 			if (ZugbandhoheCa != null) {
 				ZugbandhoheCa.Dispose ();
 				ZugbandhoheCa = null;
+			}
+
+			if (SearchList != null) {
+				SearchList.Dispose ();
+				SearchList = null;
+			}
+
+			if (SearchEmail != null) {
+				SearchEmail.Dispose ();
+				SearchEmail = null;
 			}
 		}
 	}
